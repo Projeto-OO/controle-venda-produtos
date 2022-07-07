@@ -9,6 +9,18 @@ Repositório para o projeto da disciplina de Orientação a Objetos da Universid
 | Gustavo Kenzo Araki Takechi | 211029343 |
 | Bruno Medeiros de Oliveira  | 211031646 |
 
+# UML
+
+O Unified Modeling Language (UML) é uma linguagem de modelagem que foi usada para modelar o projeto.
+
+Link: (Somente após a finalização, para evitar edições)
+
+# Whimsical
+
+Site usado para brainstorming do projeto.
+
+Link: https://whimsical.com/projeto-oo-Q9RnT5HyXHuRVBJmgMHbEF@2Ux7TurymN1HaL6cWzQk
+
 # Backlog da Aplicação:
 
 | US   | Descrição                                                                                                                       |
