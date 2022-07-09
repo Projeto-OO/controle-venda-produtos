@@ -9,9 +9,25 @@ Repositório para o projeto da disciplina de Orientação a Objetos da Universid
 | Gustavo Kenzo Araki Takechi | 211029343 |
 | Bruno Medeiros de Oliveira  | 211031646 |
 
+# Cenário
+
+- Uma loja de produtos deseja administar melhor as suas vendas.
+
+- Ela possui produtos com os seguintes atributos: nome, preço, quantidade em estoque e descrição.
+
+- A cada venda de produtos, ela deseja registrar o fluxo de caixa, que consiste em um registro de data, quantidade de produtos vendidos e o valor total da venda.
+
+- Cada produto deve ter a habilidade de ser criado, lido, atualizado e excluído.
+
+- A loja deseja também cadastrar, ler, atualizar e excluir clientes, para ter um registro de todos os clientes que compram produtos da loja, como nome, endereço, telefone, CPF e email.
+
+- Cada compra deve ter a habilidade de ser criada, lida, atualizada e excluída. Também deve ter uma lista com todos os produtos, quem está fazendo a compra e o valor total da compra.
+
+- Todo esse sistema deve ser controlado por um usuário administrador, que só pode ser acessado com uma senha.
+
 # UML
 
-O Unified Modeling Language (UML) é uma linguagem de modelagem que foi usada para modelar o projeto.
+O Unified Modeling Language (UML) é uma linguagem de modelagem que foi usada para modelar a lógica do projeto.
 
 Link: (Somente após a finalização, para evitar edições)
 
