@@ -4,10 +4,10 @@ Repositório para o projeto da disciplina de Orientação a Objetos da Universid
 
 # Alunos
 
-| Aluno                       | Matrícula |
-| --------------------------- | --------- |
-| Gustavo Kenzo Araki Takechi | 211029343 |
-| Bruno Medeiros de Oliveira  | 211031646 |
+| Aluno                                                           | Matrícula |
+| --------------------------------------------------------------- | --------- |
+| [Gustavo Kenzo Araki Takechi](https://github.com/gustavokenzo1) | 211029343 |
+| [Bruno Medeiros de Oliveira](https://github.com/brunomed)       | 211031646 |
 
 # Cenário
 
@@ -31,21 +31,23 @@ O Unified Modeling Language (UML) é uma linguagem de modelagem que foi usada pa
 
 Link: (Somente após a finalização, para evitar edições)
 
-# Whimsical
-
-Site usado para brainstorming do projeto.
-
-Link: https://whimsical.com/projeto-oo-Q9RnT5HyXHuRVBJmgMHbEF@2Ux7TurymN1HaL6cWzQk
-
 # Backlog da Aplicação
 
-| US   | Descrição                                                                                                                       |
-| ---- | ------------------------------------------------------------------------------------------------------------------------------- |
-| US01 | Eu, como usuário, gostaria de cadastrar clientes, para que eu possua seus dados, caso desejem receber atualizações.             |
-| US02 | Eu, como usuário, gostaria de vizualizar os produtos disponíveis da minha loja, para que eu os mantenha em estoque.             |
-| US03 | Eu, como usuário, gostaria de atualizar os produtos da minha loja, para que os clientes estejam sempre atualizados.             |
-| US04 | Eu, como usuário, gostaria de ter uma lista de clientes, para que eu possa saber como anda o meu negócio.                       |
-| US05 | Eu, como usuário, gostaria de ter um relatório diário dos meus lucros ou prejuízos, para que eu possa admnistrar o meu negócio. |
+| US   | Descrição                                                                                                                    |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| US01 | Eu, como usuário, gostaria de cadastrar um produto no sistema, para que minha loja tenha sempre produtos novos.              |
+| US02 | Eu, como usuário, gostaria de ler um produto, para que eu tenha sempre acesso às informações do mesmo.                       |
+| US03 | Eu, como usuário, gostaria de atualizar um produto, para que seu preço e estoque estejam sempre coerentes para os clientes.  |
+| US04 | Eu, como usuário, gostaria de deletar um produto, caso eu não deseje mais vendê-lo.                                          |
+| US05 | Eu, como usuário, gostaria de cadastrar um cliente, para que eu tenha registro de quem comprou na loja.                      |
+| US06 | Eu, como usuário, gostaria de ler um cliente, para que eu tenha sempre acesso às informações do mesmo.                       |
+| US07 | Eu, como usuário, gostaria de atualizar um cliente, para que seu endereço e telefone estejam sempre atualizados para nós.    |
+| US08 | Eu, como usuário, gostaria de deletar um cliente, para caso algum cliente deseje excluir os seus dados.                      |
+| US09 | Eu, como usuário, gostaria de cadastrar uma compra, para que eu tenha informações sobre as vendas da loja.                   |
+| US10 | Eu, como usuário, gostaria de ler uma compra, para que eu tenha sempre acesso às informações da mesma.                       |
+| US11 | Eu, como usuário, gostaria de atualizar uma compra, para que sua lista de produtos e valor total estejam sempre atualizados. |
+| US12 | Eu, como usuário, gostaria de deletar uma compra, para caso algum cliente desista de realizá-la.                             |
+| US13 | Eu, como usuário, gostaria de ser um usuário administrador, para que eu tenha acesso ao sistema.                             |
 
 # Conceitos da Orientação a Objetos
 
