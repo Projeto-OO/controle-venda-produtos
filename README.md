@@ -2,6 +2,8 @@
 
 Repositório para o projeto da disciplina de Orientação a Objetos da Universidade de Brasília. O objetivo é desenvolver uma aplicação desktop standalone com GUI em Java, utilizando os paradigmas da Programação Orientada a Objetos, e seguindo um diagrama UML.
 
+[!UML](UML.png)
+
 # Alunos
 
 | Aluno                                                           | Matrícula |
