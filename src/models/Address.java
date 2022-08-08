@@ -54,15 +54,4 @@ public class Address {
   public void setComplement(String complement) {
     this.complement = complement;
   }
-
-  @Override
-  public String toString() {
-    return "Address {" +
-        "state = '" + state + '\'' +
-        ", city = '" + city + '\'' +
-        ", cep = '" + cep + '\'' +
-        ", number = " + number +
-        ", complement = '" + complement + '\'' +
-        '}';
-  }
 }

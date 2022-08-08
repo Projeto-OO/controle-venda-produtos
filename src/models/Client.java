@@ -9,10 +9,10 @@ public class Client extends Person {
   private Cart[] pastOrders;
   private Cart currentOrder;
 
-  public Client(int id, String name, String email, String password, String cpf, String rg, String cellphone,
+  public Client(String name, String email, String password, String cpf, String rg, String cellphone,
       Address address,
       Payment payment) {
-    super(id, email, password);
+    super(email, password);
     this.cpf = cpf;
     this.rg = rg;
     this.cellphone = cellphone;
@@ -74,18 +74,5 @@ public class Client extends Person {
 
   public void setCurrentOrder(Cart currentOrder) {
     this.currentOrder = currentOrder;
-  }
-
-  @Override
-  public String toString() {
-    return "Client {" +
-        "address=" + address +
-        ", cpf='" + cpf + '\'' +
-        ", rg='" + rg + '\'' +
-        ", cellphone='" + cellphone + '\'' +
-        ", payment=" + payment +
-        ", pastOrders=" + pastOrders +
-        ", currentOrder=" + currentOrder +
-        '}';
   }
 }

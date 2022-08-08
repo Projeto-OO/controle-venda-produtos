@@ -44,14 +44,4 @@ public class Payment {
   public void setExpiresAt(String expiresAt) {
     this.expiresAt = expiresAt;
   }
-
-  @Override
-  public String toString() {
-    return "Payment {" +
-        "type='" + type + '\'' +
-        ", number='" + number + '\'' +
-        ", cvv=" + cvv +
-        ", expiresAt='" + expiresAt + '\'' +
-        '}';
-  }
 }
