@@ -12,6 +12,13 @@ public class Store {
   private ArrayList<Client> clients;
   private ArrayList<Product> products;
 
+  public Store(String name) {
+    this.name = name;
+    this.admins = new ArrayList<Admin>();
+    this.clients = new ArrayList<Client>();
+    this.products = new ArrayList<Product>();
+  }
+
   public String getName() {
     return name;
   }
@@ -66,5 +73,34 @@ public class Store {
 
   public void removeAdmin(Admin admin) {
     this.admins.remove(admin);
+  }
+
+  public Client getClient(String email) {
+    Client clientFound = null;
+
+    for (int i = 0; i < clients.size(); i++) {
+      if (clients.get(i).getEmail().equals(email)) {
+        clientFound = clients.get(i);
+        return clientFound;
+      }
+    }
+
+    return clientFound;
+  }
+
+  public void updateClient(Client client) {
+    for (int i = 0; i < clients.size(); i++) {
+      if (clients.get(i).getEmail().equals(client.getEmail())) {
+        clients.set(i, client);
+      }
+    }
+  }
+
+  public void deleteClient(Client client) {
+    for (int i = 0; i < clients.size(); i++) {
+      if (clients.get(i).getEmail().equals(client.getEmail())) {
+        clients.remove(i);
+      }
+    }
   }
 }

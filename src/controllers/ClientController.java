@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.ArrayList;
+
 import database.Store;
 import models.Address;
 import models.Cart;
@@ -9,18 +11,35 @@ import models.Payment;
 public class ClientController {
   private Store database;
 
+  public ClientController(Store database) {
+    this.database = database;
+  }
+
   public void Create(
       String name,
       String email,
-      String password,
       Address address,
       String cpf,
       String rg,
       String cellphone,
-      Payment payment,
-      Cart[] pastOrders,
-      Cart currentOrder) {
-    Client client = new Client(name, email, password, cpf, rg, cellphone, address, payment);
+      Payment payment) {
+    Client client = new Client(name, email, cpf, rg, cellphone, address, payment);
     database.addClient(client);
+  }
+
+  public ArrayList<Client> ReadAll() {
+    return this.database.getClients();
+  }
+
+  public Client ReadOne(String email) {
+    return this.database.getClient(email);
+  }
+
+  public void Update(Client client) {
+    this.database.updateClient(client);
+  }
+
+  public void Delete(Client client) {
+    this.database.removeClient(client);
   }
 }
