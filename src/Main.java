@@ -15,7 +15,5 @@ public class Main {
     Address brunoAddress = new Address("DF", "gama", "123456", 1, "Faculdade do Gama");
     clientController.Create("bruno", "brunão@gmail.com", brunoAddress, "123.456.789-10", "1234",
         "6199999999", brunoPayment);
-
-    System.out.println(clientController.ReadAll().get(0));
   }
 }

@@ -2,6 +2,7 @@ package database;
 
 import java.util.ArrayList;
 
+import controllers.AdminController;
 import models.Admin;
 import models.Client;
 import models.Product;
@@ -100,6 +101,34 @@ public class Store {
     for (int i = 0; i < clients.size(); i++) {
       if (clients.get(i).getEmail().equals(client.getEmail())) {
         clients.remove(i);
+      }
+    }
+  }
+
+  public Admin getAdmin(String email) {
+    Admin adminFound = null;
+
+    for (int i = 0; i < admins.size(); i++) {
+      if (admins.get(i).getEmail().equals(email)) {
+        adminFound = admins.get(i);
+      }
+    }
+
+    return adminFound;
+  }
+
+  public void updateAdmin(Admin admin) {
+    for (int i = 0; i < admins.size(); i++) {
+      if (admins.get(i).getEmail().equals(admin.getEmail())) {
+        admins.set(i, admin);
+      }
+    }
+  }
+
+  public void deleteAdmin(Admin admin) {
+    for (int i = 0; i < admins.size(); i++) {
+      if (admins.get(i).getEmail().equals(admin.getEmail())) {
+        admins.remove(i);
       }
     }
   }
