@@ -5,6 +5,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+
+import controllers.ClientController;
+import database.Store;
+import models.Address;
+import models.Payment;
+
 import java.awt.Font;
 
 public class MainView {
@@ -14,6 +20,15 @@ public class MainView {
 	public static void main(String[] args) {
 		MainView window = new MainView();
 		window.frame.setVisible(true);
+
+		Store database = Store.getInstance();
+
+    ClientController clientController = new ClientController(database);
+
+    Payment brunoPayment = new Payment("débito", "1234567", 123, "12/2025");
+    Address brunoAddress = new Address("DF", "gama", "123456", 1, "Faculdade do Gama");
+    clientController.Create("bruno", "brunão@gmail.com", brunoAddress, "123.456.789-10", "1234",
+        "6199999999", brunoPayment);
 	}
 
 	public MainView() {
