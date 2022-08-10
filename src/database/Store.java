@@ -13,11 +13,17 @@ public class Store {
   private ArrayList<Client> clients;
   private ArrayList<Product> products;
 
-  public Store(String name) {
-    this.name = name;
-    this.admins = new ArrayList<Admin>();
-    this.clients = new ArrayList<Client>();
-    this.products = new ArrayList<Product>();
+  private static Store instance = null;
+
+  // Singleton to avoid multiple instances of the database
+  public static Store getInstance() {
+    if (instance == null) {
+      instance = new Store();
+      instance.admins = new ArrayList<Admin>();
+      instance.clients = new ArrayList<Client>();
+      instance.products = new ArrayList<Product>();
+    }
+    return instance;
   }
 
   public String getName() {
