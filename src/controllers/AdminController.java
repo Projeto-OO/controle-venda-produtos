@@ -12,24 +12,36 @@ public class AdminController {
     this.database = Store.getInstance();
   }
 
-  public void Create(String name, String email, String password) {
+  public void createAdmin(String name, String email, String password) {
     Admin admin = new Admin(name, email, password);
-    this.database.addAdmin(admin);
+    this.database.getAdmins().add(admin);
   }
 
-  public ArrayList<Admin> ReadAll() {
+  public ArrayList<Admin> readAllAdmins() {
     return this.database.getAdmins();
   }
 
-  public Admin ReadOne(String email) {
-    return this.database.getAdmin(email);
+  public Admin readOneAdmin(String email) {
+    Admin adminFound = null;
+
+    for (Admin admin : this.database.getAdmins()) {
+      if (admin.getEmail().equals(email)) {
+        adminFound = admin;
+      }
+    }
+
+    return adminFound;
   }
 
-  public void Update(Admin admin) {
-    this.database.updateAdmin(admin);
+  public void updateAdmin(Admin admin) {
+    for (int i = 0; i < this.database.getAdmins().size(); i++) {
+      if (this.database.getAdmins().get(i).getEmail().equals(admin.getEmail())) {
+        this.database.getAdmins().set(i, admin);
+      }
+    }
   }
 
-  public void Delete(Admin admin) {
-    this.database.deleteAdmin(admin);
+  public void deleteAdmin(Admin admin) {
+    this.database.getAdmins().remove(admin);
   }
 }
