@@ -8,8 +8,8 @@ import models.Admin;
 public class AdminController {
   private Store database;
 
-  public AdminController(Store database) {
-    this.database = database;
+  public AdminController() {
+    this.database = Store.getInstance();
   }
 
   public void Create(String name, String email, String password) {

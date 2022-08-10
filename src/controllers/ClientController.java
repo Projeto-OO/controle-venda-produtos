@@ -10,8 +10,8 @@ import models.Payment;
 public class ClientController {
   private Store database;
 
-  public ClientController(Store database) {
-    this.database = database;
+  public ClientController() {
+    this.database = Store.getInstance();
   }
 
   public void Create(

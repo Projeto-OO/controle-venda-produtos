@@ -21,9 +21,9 @@ public class MainView {
 		MainView window = new MainView();
 		window.frame.setVisible(true);
 
-		Store database = Store.getInstance();
+		Store.getInstance();
 
-    ClientController clientController = new ClientController(database);
+    ClientController clientController = new ClientController();
 
     Payment brunoPayment = new Payment("débito", "1234567", 123, "12/2025");
     Address brunoAddress = new Address("DF", "gama", "123456", 1, "Faculdade do Gama");
