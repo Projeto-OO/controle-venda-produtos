@@ -31,6 +31,7 @@ class ClientControllerTest {
 				"6199999999", testClientPayment);
 
 		assertEquals("Cliente de Teste", database.getClients().get(0).getName());
+		database.clearDatabase();
 	}
 
 	@Test
@@ -42,7 +43,8 @@ class ClientControllerTest {
 				"1234",
 				"6199999999", testClientPayment);
 
-		assertNotEquals(0, database.getClients().size());
+		assertEquals(1, database.getClients().size());
+		database.clearDatabase();
 	}
 
 	@Test
@@ -55,6 +57,7 @@ class ClientControllerTest {
 				"6199999999", testClientPayment);
 
 		assertEquals("Cliente de Teste", clientController.readOneClient("john.doe@example.com").getName());
+		database.clearDatabase();
 	}
 
 	@Test
@@ -71,6 +74,7 @@ class ClientControllerTest {
 						testClientAddress, testClientPayment));
 
 		assertEquals("Cliente de Teste Editado", clientController.readOneClient("john.doe@example.com").getName());
+		database.clearDatabase();
 	}
 
 	@Test
@@ -81,7 +85,10 @@ class ClientControllerTest {
 		clientController.createClient("Cliente de Teste", "john.doe@example.com", testClientAddress, "123.456.789-10",
 				"1234",
 				"6199999999", testClientPayment);
-		
-		// clientController.deleteClient("
+
+		clientController.deleteClient(clientController.readOneClient("john.doe@example.com"));
+
+		assertEquals(0, database.getClients().size());
+		database.clearDatabase();
 	}
 }

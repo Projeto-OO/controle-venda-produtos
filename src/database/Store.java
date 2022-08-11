@@ -56,4 +56,10 @@ public class Store {
   public void setProducts(ArrayList<Product> products) {
     this.products = products;
   }
+
+  public void clearDatabase() {
+    this.admins.clear();
+    this.clients.clear();
+    this.products.clear();
+  }
 }
