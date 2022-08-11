@@ -1,24 +1,18 @@
 package models;
 
 public class Product {
-  private int id;
   private String name;
   private double salePrice;
   private double factoryPrice;
   private int stock;
   private String category;
 
-  public Product(int id, String name, double salePrice, double factoryPrice, int stock, String category) {
-    this.id = id;
+  public Product(String name, double salePrice, double factoryPrice, int stock, String category) {
     this.name = name;
     this.salePrice = salePrice;
     this.factoryPrice = factoryPrice;
     this.stock = stock;
     this.category = category;
-  }
-
-  public int getId() {
-    return id;
   }
 
   public String getName() {
@@ -39,10 +33,6 @@ public class Product {
 
   public String getCategory() {
     return category;
-  }
-
-  public void setId(int id) {
-    this.id = id;
   }
 
   public void setName(String name) {

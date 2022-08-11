@@ -23,7 +23,7 @@ public class ClientController {
       String cellphone,
       Payment payment) {
     Client client = new Client(name, email, cpf, rg, cellphone, address, payment);
-    database.getClients().add(client);
+    this.database.getClients().add(client);
   }
 
   public ArrayList<Client> readAllClients() {
@@ -36,6 +36,7 @@ public class ClientController {
     for (Client client : this.database.getClients()) {
       if (client.getEmail().equals(email)) {
         clientFound = client;
+        break;
       }
     }
 
@@ -46,6 +47,7 @@ public class ClientController {
     for (int i = 0; i < this.database.getClients().size(); i++) {
       if (this.database.getClients().get(i).getEmail().equals(client.getEmail())) {
         this.database.getClients().set(i, client);
+        break;
       }
     }
   }

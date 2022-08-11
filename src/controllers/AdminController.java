@@ -27,6 +27,7 @@ public class AdminController {
     for (Admin admin : this.database.getAdmins()) {
       if (admin.getEmail().equals(email)) {
         adminFound = admin;
+        break;
       }
     }
 
@@ -37,6 +38,7 @@ public class AdminController {
     for (int i = 0; i < this.database.getAdmins().size(); i++) {
       if (this.database.getAdmins().get(i).getEmail().equals(admin.getEmail())) {
         this.database.getAdmins().set(i, admin);
+        break;
       }
     }
   }
