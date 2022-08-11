@@ -11,7 +11,7 @@ import models.Payment;
 import models.Address;
 import models.Client;
 
-class ClientControllerTest {
+class ClientControllerTests {
 	Store database;
 	ClientController clientController;
 
