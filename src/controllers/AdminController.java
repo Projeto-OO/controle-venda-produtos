@@ -46,4 +46,15 @@ public class AdminController {
   public void deleteAdmin(Admin admin) {
     this.database.getAdmins().remove(admin);
   }
+
+  public boolean login(String email, String password) {
+
+    for (Admin admin : this.database.getAdmins()) {
+      if (admin.getEmail().equals(email) && password.equals(admin.getPassword())) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 }

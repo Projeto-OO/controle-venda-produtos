@@ -5,11 +5,10 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
-import controllers.ClientController;
+import controllers.AdminController;
 import database.Store;
-import models.Address;
-import models.Payment;
 
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -25,16 +24,13 @@ public class MainView {
 		window.frame.setVisible(true);
 
 		Store.getInstance();
-
-		ClientController clientController = new ClientController();
-
-		Payment brunoPayment = new Payment("débito", "1234567", 123, "12/2025");
-		Address brunoAddress = new Address("DF", "gama", "123456", 1, "Faculdade do Gama");
-		clientController.createClient("bruno", "brunão@gmail.com", brunoAddress, "123.456.789-10", "1234",
-				"6199999999", brunoPayment);
 	}
 
 	public MainView() {
+		AdminController adminController = new AdminController();
+
+		adminController.createAdmin("admin", "admin@admin.com", "admin");
+
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,12 +61,17 @@ public class MainView {
 
 		JButton createAdminButton = new JButton("Entrar como Administrador");
 		createAdminButton.setBounds(285, 340, 225, 25);
+
 		createAdminButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ProductView productView = new ProductView();
 
-				productView.getFrame().setVisible(true);
-				frame.dispose();
+				if (adminController.login(emailTextField.getText(), new String(passwordField.getPassword()))) {
+					ProductView productView = new ProductView();
+					productView.getFrame().setVisible(true);
+					frame.dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "E-mail ou senha incorretos");
+				}
 			}
 		});
 		frame.getContentPane().add(createAdminButton);

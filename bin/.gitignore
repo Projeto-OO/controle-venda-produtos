@@ -1,5 +1,4 @@
-/tests/
-/database/
-/controllers/
-/models/
 /views/
+/controllers/
+/tests/
+/models/
