@@ -12,10 +12,13 @@ import models.Address;
 import models.Payment;
 
 import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 public class MainView {
-
 	private JFrame frame;
+	private JTextField emailTextField;
+	private JPasswordField passwordField;
 
 	public static void main(String[] args) {
 		MainView window = new MainView();
@@ -38,36 +41,38 @@ public class MainView {
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
 
-		JButton createUserButton = new JButton("Criar Usuário");
-		createUserButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-
-		createUserButton.setBounds(300, 370, 200, 25);
-		frame.getContentPane().add(createUserButton);
-
-		JButton createProductButton = new JButton("Criar Produto");
-		createProductButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-
-		createProductButton.setBounds(300, 407, 200, 25);
-		frame.getContentPane().add(createProductButton);
-
 		JLabel storeNameLabel = new JLabel("Lojão do Brunão");
 		storeNameLabel.setFont(new Font("Meera", Font.BOLD, 25));
-		storeNameLabel.setBounds(317, 102, 163, 59);
+		storeNameLabel.setBounds(315, 100, 175, 60);
 		frame.getContentPane().add(storeNameLabel);
 
-		createUserButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+		JLabel emailLabel = new JLabel("E-mail");
+		emailLabel.setBounds(315, 190, 70, 15);
+		frame.getContentPane().add(emailLabel);
 
-				RegisterPersonView window = new RegisterPersonView();
-				window.getFrame().setVisible(true);
+		emailTextField = new JTextField();
+		emailTextField.setBounds(315, 210, 170, 20);
+		frame.getContentPane().add(emailTextField);
+		emailTextField.setColumns(10);
+
+		JLabel passwordLabel = new JLabel("Senha");
+		passwordLabel.setBounds(315, 250, 70, 15);
+		frame.getContentPane().add(passwordLabel);
+
+		passwordField = new JPasswordField();
+		passwordField.setBounds(315, 270, 170, 20);
+		frame.getContentPane().add(passwordField);
+
+		JButton createAdminButton = new JButton("Entrar como Administrador");
+		createAdminButton.setBounds(285, 340, 225, 25);
+		createAdminButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ProductView productView = new ProductView();
+
+				productView.getFrame().setVisible(true);
+				frame.dispose();
 			}
 		});
+		frame.getContentPane().add(createAdminButton);
 	}
 }

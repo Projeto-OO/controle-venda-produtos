@@ -3,15 +3,15 @@ package views;
 import javax.swing.JFrame;
 
 // Default layout structure for the application.
-public class LayoutView {
+public class TemplateView {
   private JFrame frame;
 
   public static void main(String[] args) {
-    LayoutView window = new LayoutView();
+    TemplateView window = new TemplateView();
     window.frame.setVisible(true);
   }
 
-  public LayoutView() {
+  public TemplateView() {
     frame = new JFrame();
     frame.setBounds(100, 100, 800, 550);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
