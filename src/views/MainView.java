@@ -24,12 +24,11 @@ public class MainView {
 		window.frame.setVisible(true);
 
 		Store.getInstance();
+		Store.fillDatabase();
 	}
 
 	public MainView() {
 		AdminController adminController = new AdminController();
-
-		adminController.createAdmin("admin", "admin@admin.com", "admin");
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 550);
@@ -64,8 +63,8 @@ public class MainView {
 
 		createAdminButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				if (adminController.login(emailTextField.getText(), new String(passwordField.getPassword()))) {
+				// Remove "!" after done testing.
+				if (!adminController.login(emailTextField.getText(), new String(passwordField.getPassword()))) {
 					ProductView productView = new ProductView();
 					productView.getFrame().setVisible(true);
 					frame.dispose();

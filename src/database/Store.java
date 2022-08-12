@@ -57,6 +57,14 @@ public class Store {
     this.products = products;
   }
 
+  public static void fillDatabase() {
+    instance.admins.add(new Admin("admin", "admin@admin.com", "admin"));
+
+    for (int i = 1; i <= 100; i++) {
+      instance.products.add(new Product("Product " + i, i, i, i, "Category " + i));
+    }
+  }
+
   public void clearDatabase() {
     this.admins.clear();
     this.clients.clear();
