@@ -61,7 +61,7 @@ public class Store {
     instance.admins.add(new Admin("admin", "admin@admin.com", "admin"));
 
     for (int i = 1; i <= 100; i++) {
-      instance.products.add(new Product("Product " + i, i, i, i, "Category " + i));
+      instance.products.add(new Product("Product " + i, i * 2, i, i, "Category " + i));
     }
   }
 

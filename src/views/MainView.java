@@ -65,8 +65,8 @@ public class MainView {
 			public void actionPerformed(ActionEvent e) {
 				// Remove "!" after done testing.
 				if (!adminController.login(emailTextField.getText(), new String(passwordField.getPassword()))) {
-					ProductView productView = new ProductView();
-					productView.getFrame().setVisible(true);
+					SelectSectionView selectSectionView = new SelectSectionView();
+					selectSectionView.getFrame().setVisible(true);
 					frame.dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "E-mail ou senha incorretos");
