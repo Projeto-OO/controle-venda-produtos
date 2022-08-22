@@ -40,6 +40,22 @@ public class ProductView {
     frame.getContentPane().setLayout(null);
     frame.setLocationRelativeTo(null);
 
+    JButton createProductButton = new JButton("Criar Produto");
+    createProductButton.setBounds(10, 300, 200, 25);
+    frame.getContentPane().add(createProductButton);
+
+    editProductButton = new JButton("Editar Produto");
+    editProductButton.setBounds(10, 350, 200, 25);
+    frame.getContentPane().add(editProductButton);
+
+    deleteProductButton = new JButton("Excluir Produto");
+    deleteProductButton.setBounds(10, 400, 200, 25);
+    frame.getContentPane().add(deleteProductButton);
+
+    JButton returnButton = new JButton("Voltar para o Menu");
+    returnButton.setBounds(13, 460, 200, 25);
+    frame.getContentPane().add(returnButton);
+
     String[] columns = { "Nome", "Preço de Venda", "Estoque", "Lucro por Produto" };
     Object[][] data = new Object[productController.readAllProducts().size()][columns.length];
 
@@ -54,17 +70,77 @@ public class ProductView {
 
       data[i] = product;
     }
+
+    table = new JTable(data, columns);
+
+    // Listen to product selection event
+    table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+      public void valueChanged(ListSelectionEvent event) {
+        if (table.getSelectedRow() > -1) {
+          selectedProduct = productController.readAllProducts().get(table.getSelectedRow());
+
+          nameTextField.setText(selectedProduct.getName());
+          salePriceTextField.setText(String.valueOf(selectedProduct.getSalePrice()));
+          factoryPriceTextField.setText(String.valueOf(selectedProduct.getFactoryPrice()));
+          stockTextField.setText(String.valueOf(selectedProduct.getStock()));
+          categoryTextField.setText(selectedProduct.getCategory());
+        }
+      }
+    });
+
     scrollPane = new JScrollPane();
     scrollPane.setBounds(225, 15, 550, 475);
     frame.getContentPane().add(scrollPane);
 
-    editProductButton = new JButton("Editar Produto");
-    editProductButton.setBounds(10, 420, 200, 25);
-    frame.getContentPane().add(editProductButton);
+    createProductButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        Product productAlreadyExists = productController.readOneProduct(nameTextField.getText());
 
-    deleteProductButton = new JButton("Excluir Produto");
-    deleteProductButton.setBounds(10, 460, 200, 25);
-    frame.getContentPane().add(deleteProductButton);
+        if (productAlreadyExists == null) {
+          productController.createProduct(nameTextField.getText(),
+              Double.parseDouble(salePriceTextField.getText()),
+              Double.parseDouble(factoryPriceTextField.getText()),
+              Integer.parseInt(stockTextField.getText()),
+              categoryTextField.getText());
+
+          clearInputs();
+        } else {
+          JOptionPane.showMessageDialog(null, "Esse produto já existe! Você pode excluí-lo ou editá-lo.");
+        }
+
+        String[] columns = { "Nome", "Preço de Venda", "Estoque", "Lucro por Produto" };
+        Object[][] data = new Object[productController.readAllProducts().size()][columns.length];
+
+        // Update table with new Product
+        for (int i = 0; i < productController.readAllProducts().size(); i++) {
+          String[] product = { productController.readAllProducts().get(i).getName(),
+              String.valueOf(productController.readAllProducts().get(i).getSalePrice()),
+              String.valueOf(productController.readAllProducts().get(i).getStock()),
+              String.valueOf(productController.readAllProducts().get(i).getSalePrice()
+                  - productController.readAllProducts().get(i).getFactoryPrice())
+          };
+          data[i] = product;
+        }
+
+        table = new JTable(data, columns);
+        scrollPane.setViewportView(table);
+
+        frame.repaint();
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+          public void valueChanged(ListSelectionEvent event) {
+            if (table.getSelectedRow() > -1) {
+              selectedProduct = productController.readAllProducts().get(table.getSelectedRow());
+
+              nameTextField.setText(selectedProduct.getName());
+              salePriceTextField.setText(String.valueOf(selectedProduct.getSalePrice()));
+              factoryPriceTextField.setText(String.valueOf(selectedProduct.getFactoryPrice()));
+              stockTextField.setText(String.valueOf(selectedProduct.getStock()));
+              categoryTextField.setText(selectedProduct.getCategory());
+            }
+          }
+        });
+      }
+    });
 
     editProductButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -139,123 +215,61 @@ public class ProductView {
       }
     });
 
-    table = new JTable(data, columns);
-
-    // Listen to product selection event
-    table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-      public void valueChanged(ListSelectionEvent event) {
-        if (table.getSelectedRow() > -1) {
-          selectedProduct = productController.readAllProducts().get(table.getSelectedRow());
-
-          nameTextField.setText(selectedProduct.getName());
-          salePriceTextField.setText(String.valueOf(selectedProduct.getSalePrice()));
-          factoryPriceTextField.setText(String.valueOf(selectedProduct.getFactoryPrice()));
-          stockTextField.setText(String.valueOf(selectedProduct.getStock()));
-          categoryTextField.setText(selectedProduct.getCategory());
-        }
+    returnButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        SelectSectionView selectSectionView = new SelectSectionView();
+        selectSectionView.getFrame().setVisible(true);
+        frame.dispose();
       }
     });
 
     scrollPane.setViewportView(table);
 
-    JButton createProductButton = new JButton("Criar Produto");
-    createProductButton.setBounds(10, 380, 200, 25);
-    frame.getContentPane().add(createProductButton);
-
     nameTextField = new JTextField();
-    nameTextField.setBounds(10, 125, 200, 25);
+    nameTextField.setBounds(10, 50, 200, 25);
     frame.getContentPane().add(nameTextField);
     nameTextField.setColumns(10);
 
     salePriceTextField = new JTextField();
-    salePriceTextField.setBounds(10, 175, 200, 25);
+    salePriceTextField.setBounds(10, 100, 200, 25);
     frame.getContentPane().add(salePriceTextField);
     salePriceTextField.setColumns(10);
 
     factoryPriceTextField = new JTextField();
-    factoryPriceTextField.setBounds(10, 225, 200, 25);
+    factoryPriceTextField.setBounds(10, 150, 200, 25);
     frame.getContentPane().add(factoryPriceTextField);
     factoryPriceTextField.setColumns(10);
 
     stockTextField = new JTextField();
-    stockTextField.setBounds(10, 275, 200, 25);
+    stockTextField.setBounds(10, 200, 200, 25);
     frame.getContentPane().add(stockTextField);
     stockTextField.setColumns(10);
 
     categoryTextField = new JTextField();
-    categoryTextField.setBounds(10, 325, 200, 25);
+    categoryTextField.setBounds(10, 250, 200, 25);
     frame.getContentPane().add(categoryTextField);
     categoryTextField.setColumns(10);
 
     JLabel nameLabel = new JLabel("Nome");
-    nameLabel.setBounds(10, 110, 70, 15);
+    nameLabel.setBounds(10, 30, 70, 15);
     frame.getContentPane().add(nameLabel);
 
     JLabel salePriceLabel = new JLabel("Preço de Venda");
-    salePriceLabel.setBounds(10, 160, 200, 15);
+    salePriceLabel.setBounds(10, 80, 200, 15);
     frame.getContentPane().add(salePriceLabel);
 
     JLabel factoryPriceLabel = new JLabel("Preço de Fábrica");
-    factoryPriceLabel.setBounds(10, 210, 200, 15);
+    factoryPriceLabel.setBounds(10, 130, 200, 15);
     frame.getContentPane().add(factoryPriceLabel);
 
     JLabel stockLabel = new JLabel("Estoque");
-    stockLabel.setBounds(10, 260, 200, 15);
+    stockLabel.setBounds(10, 180, 200, 15);
     frame.getContentPane().add(stockLabel);
 
     JLabel categoryLabel = new JLabel("Categoria");
-    categoryLabel.setBounds(10, 310, 200, 15);
+    categoryLabel.setBounds(10, 230, 200, 15);
     frame.getContentPane().add(categoryLabel);
 
-    createProductButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        Product productAlreadyExists = productController.readOneProduct(nameTextField.getText());
-
-        if (productAlreadyExists == null) {
-          productController.createProduct(nameTextField.getText(),
-              Double.parseDouble(salePriceTextField.getText()),
-              Double.parseDouble(factoryPriceTextField.getText()),
-              Integer.parseInt(stockTextField.getText()),
-              categoryTextField.getText());
-
-          clearInputs();
-        } else {
-          JOptionPane.showMessageDialog(null, "Esse produto já existe! Você pode excluí-lo ou editá-lo.");
-        }
-
-        String[] columns = { "Nome", "Preço de Venda", "Estoque", "Lucro por Produto" };
-        Object[][] data = new Object[productController.readAllProducts().size()][columns.length];
-
-        // Update table with new Product
-        for (int i = 0; i < productController.readAllProducts().size(); i++) {
-          String[] product = { productController.readAllProducts().get(i).getName(),
-              String.valueOf(productController.readAllProducts().get(i).getSalePrice()),
-              String.valueOf(productController.readAllProducts().get(i).getStock()),
-              String.valueOf(productController.readAllProducts().get(i).getSalePrice()
-                  - productController.readAllProducts().get(i).getFactoryPrice())
-          };
-          data[i] = product;
-        }
-
-        table = new JTable(data, columns);
-        scrollPane.setViewportView(table);
-
-        frame.repaint();
-        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-          public void valueChanged(ListSelectionEvent event) {
-            if (table.getSelectedRow() > -1) {
-              selectedProduct = productController.readAllProducts().get(table.getSelectedRow());
-
-              nameTextField.setText(selectedProduct.getName());
-              salePriceTextField.setText(String.valueOf(selectedProduct.getSalePrice()));
-              factoryPriceTextField.setText(String.valueOf(selectedProduct.getFactoryPrice()));
-              stockTextField.setText(String.valueOf(selectedProduct.getStock()));
-              categoryTextField.setText(selectedProduct.getCategory());
-            }
-          }
-        });
-      }
-    });
   }
 
   public JFrame getFrame() {

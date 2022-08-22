@@ -1,12 +1,14 @@
 package models;
 
+import java.util.ArrayList;
+
 public class Client extends Person {
   private Address address;
   private String cpf;
   private String rg;
   private String cellphone;
   private Payment payment;
-  private Cart[] pastOrders;
+  private ArrayList<Cart> pastOrders;
   private Cart currentOrder;
 
   public Client(String name, String email, String cpf, String rg, String cellphone,
@@ -18,6 +20,7 @@ public class Client extends Person {
     this.cellphone = cellphone;
     this.address = address;
     this.payment = payment;
+    this.pastOrders = new ArrayList<Cart>();
   }
 
   public Address getAddress() {
@@ -60,11 +63,11 @@ public class Client extends Person {
     this.payment = payment;
   }
 
-  public Cart[] getPastOrders() {
+  public ArrayList<Cart> getPastOrders() {
     return pastOrders;
   }
 
-  public void setPastOrders(Cart[] pastOrders) {
+  public void setPastOrders(ArrayList<Cart> pastOrders) {
     this.pastOrders = pastOrders;
   }
 

@@ -31,6 +31,14 @@ public class SelectSectionView {
 				frame.dispose();
 			}
 		});
+
+		clientsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ClientView clientView = new ClientView();
+				clientView.getFrame().setVisible(true);
+				frame.dispose();
+			}
+		});
 	}
 
 	public JFrame getFrame() {

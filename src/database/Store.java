@@ -2,8 +2,10 @@ package database;
 
 import java.util.ArrayList;
 
+import models.Address;
 import models.Admin;
 import models.Client;
+import models.Payment;
 import models.Product;
 
 public class Store {
@@ -62,6 +64,14 @@ public class Store {
 
     for (int i = 1; i <= 100; i++) {
       instance.products.add(new Product("Product " + i, i * 2, i, i, "Category " + i));
+    }
+
+    for (int i = 1; i <= 100; i++) {
+      Address address = new Address("Distrito " + i, "Cidade " + i, String.valueOf(i * i * i), i, "Casa " + i);
+      Payment payment = new Payment("Débito", String.valueOf(i * i * i * i), i * i, String.valueOf(i + '/' + i));
+
+      instance.clients.add(new Client("Cliente " + i, "cliente" + i + "@unb.br", String.valueOf(i * i * i * i),
+          String.valueOf(i * i * i), String.valueOf(i * i * i * i * 2), address, payment));
     }
   }
 

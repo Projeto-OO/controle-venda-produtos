@@ -75,4 +75,8 @@ public class MainView {
 		});
 		frame.getContentPane().add(createAdminButton);
 	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
 }
