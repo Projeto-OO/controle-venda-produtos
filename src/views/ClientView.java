@@ -4,7 +4,10 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import controllers.ClientController;
+import models.Client;
 
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -42,6 +45,7 @@ public class ClientView {
 	private JLabel expiresAtLabel;
 	private JTable table;
 	private ClientController clientController;
+	private Client selectedClient;
 
 	public ClientView() {
 		clientController = new ClientController();
@@ -207,6 +211,19 @@ public class ClientView {
 		}
 
 		table = new JTable(data, columns);
+
+		// Listen to product selection event
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent event) {
+				if (table.getSelectedRow() > -1) {
+					selectedClient = clientController.readAllClients().get(table.getSelectedRow());
+
+					ClientInfoView clientInfoView = new ClientInfoView(selectedClient);
+					clientInfoView.getFrame().setVisible(true);
+					frame.dispose();
+				}
+			}
+		});
 
 		scrollPane.setViewportView(table);
 	}
