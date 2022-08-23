@@ -2,9 +2,14 @@ package views;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import models.Client;
 import java.awt.Font;
+import javax.swing.JButton;
 
 public class ClientInfoView {
   private JFrame frame;
@@ -66,25 +71,39 @@ public class ClientInfoView {
     addressLabel.setBounds(30, 260, 100, 15);
     frame.getContentPane().add(addressLabel);
 
-    JLabel userCpfLabel = new JLabel(cpf);
-    userCpfLabel.setBounds(160, 140, 100, 15);
-    frame.getContentPane().add(userCpfLabel);
+    JTextField userCpfInput = new JTextField(cpf);
+    userCpfInput.setBounds(160, 140, 100, 15);
+    frame.getContentPane().add(userCpfInput);
 
-    JLabel userRgLabel = new JLabel(rg);
-    userRgLabel.setBounds(160, 170, 100, 15);
-    frame.getContentPane().add(userRgLabel);
+    JTextField userRgInput = new JTextField(rg);
+    userRgInput.setBounds(160, 170, 100, 15);
+    frame.getContentPane().add(userRgInput);
 
-    JLabel userCellphoneLabel = new JLabel(cellphone);
-    userCellphoneLabel.setBounds(160, 200, 100, 15);
-    frame.getContentPane().add(userCellphoneLabel);
+    JTextField userCellphoneInput = new JTextField(cellphone);
+    userCellphoneInput.setBounds(160, 200, 100, 15);
+    frame.getContentPane().add(userCellphoneInput);
 
-    JLabel userPaymentLabel = new JLabel(payment);
-    userPaymentLabel.setBounds(160, 230, 100, 15);
-    frame.getContentPane().add(userPaymentLabel);
+    JTextField userPaymentInput = new JTextField(payment);
+    userPaymentInput.setBounds(160, 230, 100, 15);
+    frame.getContentPane().add(userPaymentInput);
 
-    JLabel userAddressLabel = new JLabel(address);
-    userAddressLabel.setBounds(160, 260, 100, 15);
-    frame.getContentPane().add(userAddressLabel);
+    JTextField userAddressInput = new JTextField(address);
+    userAddressInput.setBounds(160, 260, 100, 15);
+    frame.getContentPane().add(userAddressInput);
+
+    JButton returnButton = new JButton("Voltar");
+    returnButton.setBounds(300, 450, 200, 25);
+    frame.getContentPane().add(returnButton);
+
+    returnButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        ClientView clientView = new ClientView();
+
+        clientView.getFrame().setVisible(true);
+
+        frame.dispose();
+      }
+    });
   }
 
   public JFrame getFrame() {

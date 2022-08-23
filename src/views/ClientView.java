@@ -4,11 +4,17 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import controllers.ClientController;
+import models.Address;
 import models.Client;
+import models.Payment;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -46,6 +52,8 @@ public class ClientView {
 	private JTable table;
 	private ClientController clientController;
 	private Client selectedClient;
+	private JScrollPane scrollPane;
+	private JButton returnButton;
 
 	public ClientView() {
 		clientController = new ClientController();
@@ -191,10 +199,83 @@ public class ClientView {
 		createClientButton.setBounds(550, 250, 150, 25);
 		frame.getContentPane().add(createClientButton);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(60, 300, 640, 200);
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(50, 300, 650, 150);
 		frame.getContentPane().add(scrollPane);
 
+		returnButton = new JButton("Voltar");
+		returnButton.setBounds(275, 475, 200, 25);
+		frame.getContentPane().add(returnButton);
+
+		updateTable();
+
+		createClientButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Client clientAlreadyExists = clientController.readOneClient(emailTextField.getText());
+
+				if (clientAlreadyExists == null && allInputsAreFilled()) {
+					clientController.createClient(nameTextField.getText(),
+							emailTextField.getText(),
+							new Address(stateTextField.getText(), cityTextField.getText(), cepTextField.getText(),
+									Integer.valueOf(numberTextField.getText()), complementTextField.getText()),
+							cpfTextField.getText(),
+							rgTextField.getText(),
+							cellphoneTextField.getText(),
+							new Payment(typeTextField.getText(), paymentNumberTextField.getText(),
+									Integer.valueOf(cvvTextField.getText()), expiresAtTextField.getText()));
+
+					clearInputs();
+					JOptionPane.showMessageDialog(null, "Cliente criado com sucesso!");
+				} else {
+					JOptionPane.showMessageDialog(null, "Cliente já existe!");
+				}
+
+				updateTable();
+			}
+		});
+
+		returnButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SelectSectionView selectSectionView = new SelectSectionView();
+				selectSectionView.getFrame().setVisible(true);
+
+				frame.dispose();
+			}
+		});
+	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public boolean allInputsAreFilled() {
+		return !nameTextField.getText().isEmpty() && !emailTextField.getText().isEmpty()
+				&& !stateTextField.getText().isEmpty() && !cityTextField.getText().isEmpty()
+				&& !cepTextField.getText().isEmpty() && !numberTextField.getText().isEmpty()
+				&& !complementTextField.getText().isEmpty() && !cpfTextField.getText().isEmpty()
+				&& !rgTextField.getText().isEmpty() && !cellphoneTextField.getText().isEmpty()
+				&& !typeTextField.getText().isEmpty() && !paymentNumberTextField.getText().isEmpty()
+				&& !cvvTextField.getText().isEmpty() && !expiresAtTextField.getText().isEmpty();
+	}
+
+	public void clearInputs() {
+		nameTextField.setText("");
+		emailTextField.setText("");
+		stateTextField.setText("");
+		cityTextField.setText("");
+		cepTextField.setText("");
+		numberTextField.setText("");
+		complementTextField.setText("");
+		cpfTextField.setText("");
+		rgTextField.setText("");
+		cellphoneTextField.setText("");
+		typeTextField.setText("");
+		paymentNumberTextField.setText("");
+		cvvTextField.setText("");
+		expiresAtTextField.setText("");
+	}
+
+	public void updateTable() {
 		String[] columns = { "Nome", "E-mail", "Telefone", "Cidade", "Compras Feitas" };
 		Object[][] data = new Object[clientController.readAllClients().size()][columns.length];
 
@@ -226,9 +307,5 @@ public class ClientView {
 		});
 
 		scrollPane.setViewportView(table);
-	}
-
-	public JFrame getFrame() {
-		return frame;
 	}
 }
