@@ -17,6 +17,7 @@ public class AdminControllerTests {
   void setUp() {
     this.database = Store.getInstance();
     this.adminController = new AdminController();
+    this.database.clearDatabase();
   }
 
   @Test
@@ -24,7 +25,6 @@ public class AdminControllerTests {
     adminController.createAdmin("Admin de Teste", "test@admin.com", "admin123");
 
     assertEquals("Admin de Teste", database.getAdmins().get(0).getName());
-    database.clearDatabase();
   }
 
   @Test
@@ -33,7 +33,6 @@ public class AdminControllerTests {
     adminController.createAdmin("Admin de Teste 2", "test2@admin.com", "admin123");
 
     assertEquals(2, adminController.readAllAdmins().size());
-    database.clearDatabase();
   }
 
   @Test
@@ -41,7 +40,6 @@ public class AdminControllerTests {
     adminController.createAdmin("Admin de Teste", "test@admin.com", "admin123");
 
     assertEquals("Admin de Teste", adminController.readOneAdmin("test@admin.com").getName());
-    database.clearDatabase();
   }
 
   @Test
@@ -50,7 +48,6 @@ public class AdminControllerTests {
     adminController.updateAdmin(new Admin("Admin de Teste Editado", "test@admin.com", "admin123"));
 
     assertEquals("Admin de Teste Editado", adminController.readOneAdmin("test@admin.com").getName());
-    database.clearDatabase();
   }
 
   @Test
@@ -62,6 +59,5 @@ public class AdminControllerTests {
     adminController.deleteAdmin(database.getAdmins().get(0));
 
     assertEquals(0, adminController.readAllAdmins().size());
-    database.clearDatabase();
   }
 }

@@ -19,6 +19,7 @@ class ClientControllerTests {
 	void setUp() {
 		this.database = Store.getInstance();
 		this.clientController = new ClientController();
+		this.database.clearDatabase();
 	}
 
 	@Test
@@ -31,7 +32,6 @@ class ClientControllerTests {
 				"6199999999", testClientPayment);
 
 		assertEquals("Cliente de Teste", database.getClients().get(0).getName());
-		database.clearDatabase();
 	}
 
 	@Test
@@ -44,7 +44,6 @@ class ClientControllerTests {
 				"6199999999", testClientPayment);
 
 		assertEquals(1, database.getClients().size());
-		database.clearDatabase();
 	}
 
 	@Test
@@ -57,7 +56,6 @@ class ClientControllerTests {
 				"6199999999", testClientPayment);
 
 		assertEquals("Cliente de Teste", clientController.readOneClient("john.doe@example.com").getName());
-		database.clearDatabase();
 	}
 
 	@Test
@@ -74,7 +72,6 @@ class ClientControllerTests {
 						testClientAddress, testClientPayment));
 
 		assertEquals("Cliente de Teste Editado", clientController.readOneClient("john.doe@example.com").getName());
-		database.clearDatabase();
 	}
 
 	@Test
@@ -89,6 +86,5 @@ class ClientControllerTests {
 		clientController.deleteClient(clientController.readOneClient("john.doe@example.com"));
 
 		assertEquals(0, database.getClients().size());
-		database.clearDatabase();
 	}
 }

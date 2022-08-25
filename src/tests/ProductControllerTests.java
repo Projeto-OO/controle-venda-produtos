@@ -17,6 +17,7 @@ public class ProductControllerTests {
   void setUp() {
     this.database = Store.getInstance();
     this.productController = new ProductController();
+    this.database.clearDatabase();
   }
 
   @Test
@@ -24,7 +25,6 @@ public class ProductControllerTests {
     productController.createProduct("Pão", 2, 1, 100, "Alimento");
 
     assertEquals("Pão", database.getProducts().get(0).getName());
-    this.database.clearDatabase();
   }
 
   @Test
@@ -32,7 +32,6 @@ public class ProductControllerTests {
     productController.createProduct("Pão", 2, 1, 100, "Alimento");
 
     assertEquals("Pão", productController.readOneProduct("Pão").getName());
-    this.database.clearDatabase();
   }
 
   @Test
@@ -41,7 +40,6 @@ public class ProductControllerTests {
     productController.createProduct("Pão 2", 2, 1, 100, "Alimento 2");
 
     assertEquals(2, productController.readAllProducts().size());
-    this.database.clearDatabase();
   }
 
   @Test
@@ -50,7 +48,6 @@ public class ProductControllerTests {
     productController.updateProduct(new Product("Pão", 2, 1, 100, "Alimento Editado"));
 
     assertEquals("Alimento Editado", productController.readOneProduct("Pão").getCategory());
-    this.database.clearDatabase();
   }
 
   @Test
@@ -59,6 +56,5 @@ public class ProductControllerTests {
     productController.deleteProduct(productController.readOneProduct("Pão"));
 
     assertEquals(0, productController.readAllProducts().size());
-    this.database.clearDatabase();
   }
 }
