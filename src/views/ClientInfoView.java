@@ -3,6 +3,7 @@ package views;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,8 @@ import java.awt.event.ActionListener;
 import models.Client;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class ClientInfoView {
   private JFrame frame;
@@ -18,8 +21,26 @@ public class ClientInfoView {
   private String cpf;
   private String rg;
   private String cellphone;
-  private String payment;
-  private String address;
+  private String state;
+  private String city;
+  private String cep;
+  private int number;
+  private String complement;
+  private String type;
+  private String cardNumber;
+  private int cvv;
+  private String expiresAt;
+  private JTextField stateTextField;
+  private JTextField cityTextField;
+  private JTextField cepTextField;
+  private JTextField numberTextField;
+  private JTextField complementTextField;
+  private JTextField typeTextField;
+  private JTextField cardNumberTextField;
+  private JTextField cvvTextField;
+  private JTextField expiresAtTextField;
+  private JTable cartTable;
+  private JTable pastOrdersTable;
 
   public ClientInfoView(Client client) {
     frame = new JFrame();
@@ -33,67 +54,164 @@ public class ClientInfoView {
     this.cpf = client.getCpf();
     this.rg = client.getRg();
     this.cellphone = client.getCellphone();
-    this.payment = client.getPayment().getType();
-    this.address = client.getAddress().getCity();
+    this.state = client.getAddress().getState();
+    this.city = client.getAddress().getCity();
+    this.cep = client.getAddress().getCep();
+    this.number = client.getAddress().getNumber();
+    this.complement = client.getAddress().getComplement();
+    this.type = client.getPayment().getType();
+    this.cardNumber = client.getPayment().getNumber();
+    this.cvv = client.getPayment().getCvv();
+    this.expiresAt = client.getPayment().getExpiresAt();
 
     JLabel nameLabel = new JLabel(name);
     nameLabel.setFont(new Font("Dialog", Font.BOLD, 22));
-    nameLabel.setBounds(330, 25, 150, 15);
+    nameLabel.setBounds(30, 25, 150, 15);
     frame.getContentPane().add(nameLabel);
 
     JLabel emailLabel = new JLabel(email);
     emailLabel.setFont(new Font("Dialog", Font.BOLD, 22));
-    emailLabel.setBounds(290, 75, 250, 15);
+    emailLabel.setBounds(30, 75, 250, 15);
     frame.getContentPane().add(emailLabel);
 
     JLabel cpfLabel = new JLabel("CPF:");
     cpfLabel.setFont(new Font("Dialog", Font.BOLD, 14));
-    cpfLabel.setBounds(30, 140, 70, 15);
+    cpfLabel.setBounds(30, 120, 70, 15);
     frame.getContentPane().add(cpfLabel);
 
     JLabel rgLabel = new JLabel("RG:");
     rgLabel.setFont(new Font("Dialog", Font.BOLD, 14));
-    rgLabel.setBounds(30, 170, 70, 15);
+    rgLabel.setBounds(30, 150, 70, 15);
     frame.getContentPane().add(rgLabel);
 
     JLabel cellphoneLabel = new JLabel("Telefone:");
     cellphoneLabel.setFont(new Font("Dialog", Font.BOLD, 14));
-    cellphoneLabel.setBounds(30, 200, 100, 15);
+    cellphoneLabel.setBounds(30, 180, 100, 15);
     frame.getContentPane().add(cellphoneLabel);
 
-    JLabel paymentLabel = new JLabel("Pagamento:");
-    paymentLabel.setFont(new Font("Dialog", Font.BOLD, 14));
-    paymentLabel.setBounds(30, 230, 100, 15);
-    frame.getContentPane().add(paymentLabel);
-
-    JLabel addressLabel = new JLabel("Endereço:");
-    addressLabel.setFont(new Font("Dialog", Font.BOLD, 14));
-    addressLabel.setBounds(30, 260, 100, 15);
-    frame.getContentPane().add(addressLabel);
-
-    JTextField userCpfInput = new JTextField(cpf);
-    userCpfInput.setBounds(160, 140, 100, 15);
+    JLabel userCpfInput = new JLabel(cpf);
+    userCpfInput.setBounds(200, 120, 100, 15);
     frame.getContentPane().add(userCpfInput);
 
-    JTextField userRgInput = new JTextField(rg);
-    userRgInput.setBounds(160, 170, 100, 15);
+    JLabel userRgInput = new JLabel(rg);
+    userRgInput.setBounds(200, 150, 100, 15);
     frame.getContentPane().add(userRgInput);
 
     JTextField userCellphoneInput = new JTextField(cellphone);
-    userCellphoneInput.setBounds(160, 200, 100, 15);
+    userCellphoneInput.setBounds(200, 180, 100, 15);
     frame.getContentPane().add(userCellphoneInput);
 
-    JTextField userPaymentInput = new JTextField(payment);
-    userPaymentInput.setBounds(160, 230, 100, 15);
-    frame.getContentPane().add(userPaymentInput);
-
-    JTextField userAddressInput = new JTextField(address);
-    userAddressInput.setBounds(160, 260, 100, 15);
-    frame.getContentPane().add(userAddressInput);
-
-    JButton returnButton = new JButton("Voltar");
-    returnButton.setBounds(300, 450, 200, 25);
+    JButton returnButton = new JButton("Salvar e Voltar");
+    returnButton.setBounds(300, 480, 200, 25);
     frame.getContentPane().add(returnButton);
+
+    JLabel stateLabel = new JLabel("Estado:");
+    stateLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+    stateLabel.setBounds(30, 210, 100, 15);
+    frame.getContentPane().add(stateLabel);
+
+    JLabel cityLabel = new JLabel("Cidade:");
+    cityLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+    cityLabel.setBounds(30, 240, 100, 15);
+    frame.getContentPane().add(cityLabel);
+
+    JLabel cepLabel = new JLabel("CEP: ");
+    cepLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+    cepLabel.setBounds(30, 270, 100, 15);
+    frame.getContentPane().add(cepLabel);
+
+    JLabel numberLabel = new JLabel("Número:");
+    numberLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+    numberLabel.setBounds(30, 300, 100, 15);
+    frame.getContentPane().add(numberLabel);
+
+    stateTextField = new JTextField(state);
+    stateTextField.setBounds(200, 210, 100, 15);
+    frame.getContentPane().add(stateTextField);
+
+    cityTextField = new JTextField(city);
+    cityTextField.setBounds(200, 240, 100, 15);
+    frame.getContentPane().add(cityTextField);
+
+    cepTextField = new JTextField(cep);
+    cepTextField.setBounds(200, 270, 100, 15);
+    frame.getContentPane().add(cepTextField);
+
+    numberTextField = new JTextField(Integer.toString(number));
+    numberTextField.setBounds(200, 300, 100, 15);
+    frame.getContentPane().add(numberTextField);
+
+    JLabel complementLabel = new JLabel("Complemento:");
+    complementLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+    complementLabel.setBounds(30, 330, 150, 15);
+    frame.getContentPane().add(complementLabel);
+
+    complementTextField = new JTextField(complement);
+    complementTextField.setBounds(200, 330, 100, 15);
+    frame.getContentPane().add(complementTextField);
+
+    JLabel typeLabel = new JLabel("Tipo:");
+    typeLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+    typeLabel.setBounds(30, 360, 70, 15);
+    frame.getContentPane().add(typeLabel);
+
+    JLabel cardNumberLabel = new JLabel("Número do Cartão:");
+    cardNumberLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+    cardNumberLabel.setBounds(30, 390, 150, 15);
+    frame.getContentPane().add(cardNumberLabel);
+
+    JLabel cvvLabel = new JLabel("CVV:");
+    cvvLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+    cvvLabel.setBounds(30, 420, 150, 15);
+    frame.getContentPane().add(cvvLabel);
+
+    JLabel expiresAtLabel = new JLabel("Data de Expiração:");
+    expiresAtLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+    expiresAtLabel.setBounds(30, 450, 150, 15);
+    frame.getContentPane().add(expiresAtLabel);
+
+    typeTextField = new JTextField(type);
+    typeTextField.setBounds(200, 358, 100, 15);
+    frame.getContentPane().add(typeTextField);
+
+    cardNumberTextField = new JTextField(cardNumber);
+    cardNumberTextField.setBounds(200, 388, 100, 15);
+    frame.getContentPane().add(cardNumberTextField);
+
+    cvvTextField = new JTextField(String.valueOf(cvv));
+    cvvTextField.setBounds(200, 418, 100, 15);
+    frame.getContentPane().add(cvvTextField);
+
+    expiresAtTextField = new JTextField(expiresAt);
+    expiresAtTextField.setBounds(200, 448, 100, 15);
+    frame.getContentPane().add(expiresAtTextField);
+
+    JLabel cartLabel = new JLabel("Carrinho de Compras");
+    cartLabel.setFont(new Font("Dialog", Font.BOLD, 22));
+    cartLabel.setBounds(350, 25, 300, 15);
+    frame.getContentPane().add(cartLabel);
+
+    JScrollPane cartScrollPane = new JScrollPane();
+    cartScrollPane.setBounds(350, 50, 300, 180);
+    frame.getContentPane().add(cartScrollPane);
+
+    String[] cartTableColumns = { "Produto", "Quantidade", "Preço Unitário", "Preço Total" };
+    DefaultTableModel cartTableModel = new DefaultTableModel(cartTableColumns, 0);
+
+    cartTable = new JTable(cartTableModel);
+    cartScrollPane.setViewportView(cartTable);
+
+    JLabel pastOrdersLabel = new JLabel("Compras Anteriores");
+    pastOrdersLabel.setFont(new Font("Dialog", Font.BOLD, 22));
+    pastOrdersLabel.setBounds(350, 250, 300, 15);
+    frame.getContentPane().add(pastOrdersLabel);
+
+    JScrollPane pastOrdersScrollPane = new JScrollPane();
+    pastOrdersScrollPane.setBounds(350, 280, 300, 180);
+    frame.getContentPane().add(pastOrdersScrollPane);
+
+    pastOrdersTable = new JTable();
+    pastOrdersScrollPane.setViewportView(pastOrdersTable);
 
     returnButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {

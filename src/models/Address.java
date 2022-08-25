@@ -1,5 +1,13 @@
 package models;
 
+/**
+ * @author Gustavo Kenzo
+ * @author Bruno Medeiros
+ * @version 1.0
+ * 
+ *          Classe que representa o endereço de um usuário
+ * 
+ */
 public class Address {
   private String state;
   private String city;
@@ -7,6 +15,15 @@ public class Address {
   private int number;
   private String complement;
 
+  /**
+   * Construtor da classe Address
+   * 
+   * @param state      Estado do endereço
+   * @param city       Cidade do endereço
+   * @param cep        CEP do endereço
+   * @param number     Número do endereço
+   * @param complement Complemento do endereço
+   */
   public Address(String state, String city, String cep, int number, String complement) {
     this.state = state;
     this.city = city;

@@ -191,8 +191,8 @@ public class ClientView {
 		expiresAtTextField.setBounds(550, 200, 150, 25);
 		frame.getContentPane().add(expiresAtTextField);
 
-		expiresAtLabel = new JLabel("Número");
-		expiresAtLabel.setBounds(550, 180, 70, 15);
+		expiresAtLabel = new JLabel("Data de expiração");
+		expiresAtLabel.setBounds(550, 180, 150, 15);
 		frame.getContentPane().add(expiresAtLabel);
 
 		JButton createClientButton = new JButton("Criar Cliente");
