@@ -75,4 +75,9 @@ public class SearchProductPopUpView {
   public int getQuantity() {
     return Integer.parseInt(amountTextField.getText());
   }
+
+  public void clearInputs() {
+    productTextField.setText("");
+    amountTextField.setText("");
+  }
 }

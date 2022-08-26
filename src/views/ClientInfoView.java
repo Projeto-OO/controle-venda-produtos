@@ -221,15 +221,27 @@ public class ClientInfoView {
     frame.getContentPane().add(pastOrdersLabel);
 
     JScrollPane pastOrdersScrollPane = new JScrollPane();
-    pastOrdersScrollPane.setBounds(350, 280, 300, 180);
+    pastOrdersScrollPane.setBounds(350, 280, 400, 180);
     frame.getContentPane().add(pastOrdersScrollPane);
 
-    pastOrdersTable = new JTable();
+    String[] pastOrdersTableColumns = { "Compras" };
+    DefaultTableModel pastOrdersTableModel = new DefaultTableModel(pastOrdersTableColumns,
+        client.getPastOrders().size());
+
+    pastOrdersTable = new JTable(pastOrdersTableModel);
     pastOrdersScrollPane.setViewportView(pastOrdersTable);
+
+    for (int i = 0; i < client.getPastOrders().size(); i++) {
+      pastOrdersTableModel.setValueAt(client.getPastOrders().get(i).toString(), i, 0);
+    }
 
     JButton addProductButton = new JButton("Adicionar");
     addProductButton.setBounds(665, 120, 120, 25);
     frame.getContentPane().add(addProductButton);
+
+    JButton finnishButton = new JButton("Finalizar");
+    finnishButton.setBounds(665, 160, 120, 25);
+    frame.getContentPane().add(finnishButton);
 
     SearchProductPopUpView searchProductPopUpView = new SearchProductPopUpView(client);
 
@@ -242,11 +254,22 @@ public class ClientInfoView {
 
     searchProductPopUpView.getFrame().addWindowListener(new WindowAdapter() {
       public void windowClosing(WindowEvent e) {
-        if (searchProductPopUpView.getProduct() != null) {
-          cartTableModel.addRow(new Object[] { searchProductPopUpView.getProduct().getName(),
-              searchProductPopUpView.getQuantity(), searchProductPopUpView.getProduct().getSalePrice(),
-              searchProductPopUpView.getProduct().getSalePrice() * searchProductPopUpView.getQuantity() });
+        String[] cartTableColumns = { "Produto", "Quantidade", "Preço Unitário", "Preço Total" };
+        DefaultTableModel cartTableModel = new DefaultTableModel(cartTableColumns,
+            client.getCurrentOrder().getProducts().size());
+
+        cartTable = new JTable(cartTableModel);
+        cartScrollPane.setViewportView(cartTable);
+
+        for (int i = 0; i < client.getCurrentOrder().getProducts().size(); i++) {
+          cartTableModel.setValueAt(client.getCurrentOrder().getProducts().get(i).getProduct().getName(), i, 0);
+          cartTableModel.setValueAt(client.getCurrentOrder().getProducts().get(i).getAmount(), i, 1);
+          cartTableModel.setValueAt(client.getCurrentOrder().getProducts().get(i).getProduct().getSalePrice(), i, 2);
+          cartTableModel.setValueAt(client.getCurrentOrder().getProducts().get(i).getProduct().getSalePrice()
+              * client.getCurrentOrder().getProducts().get(i).getAmount(), i, 3);
         }
+
+        searchProductPopUpView.clearInputs();
       }
     });
 
@@ -261,6 +284,40 @@ public class ClientInfoView {
             cartTableModel.removeRow(cartTable.getSelectedRow());
           }
         }
+      }
+    });
+
+    finnishButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        client.checkout();
+
+        String[] cartTableColumns = { "Produto", "Quantidade", "Preço Unitário", "Preço Total" };
+        DefaultTableModel cartTableModel = new DefaultTableModel(cartTableColumns,
+            client.getCurrentOrder().getProducts().size());
+
+        cartTable = new JTable(cartTableModel);
+
+        for (int i = 0; i < client.getCurrentOrder().getProducts().size(); i++) {
+          cartTableModel.setValueAt(client.getCurrentOrder().getProducts().get(i).getProduct().getName(), i, 0);
+          cartTableModel.setValueAt(client.getCurrentOrder().getProducts().get(i).getAmount(), i, 1);
+          cartTableModel.setValueAt(client.getCurrentOrder().getProducts().get(i).getProduct().getSalePrice(), i, 2);
+          cartTableModel.setValueAt(client.getCurrentOrder().getProducts().get(i).getProduct().getSalePrice()
+              * client.getCurrentOrder().getProducts().get(i).getAmount(), i, 3);
+        }
+
+        cartScrollPane.setViewportView(cartTable);
+
+        String[] pastOrdersTableColumns = { "Compras" };
+        DefaultTableModel pastOrdersTableModel = new DefaultTableModel(pastOrdersTableColumns,
+            client.getPastOrders().size());
+
+        pastOrdersTable = new JTable(pastOrdersTableModel);
+
+        for (int i = 0; i < client.getPastOrders().size(); i++) {
+          pastOrdersTableModel.setValueAt(client.getPastOrders().get(i).toString(), i, 0);
+        }
+
+        pastOrdersScrollPane.setViewportView(pastOrdersTable);
       }
     });
 

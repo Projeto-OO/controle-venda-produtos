@@ -80,6 +80,12 @@ public class Client extends Person {
     this.currentOrder = currentOrder;
   }
 
+  public void checkout() {
+    this.pastOrders.add(currentOrder);
+
+    this.currentOrder = new Cart(new ArrayList<ProductAmount>(), 0);
+  }
+
   @Override
   public String toString() {
     return "Client " + super.toString() + " " + this.address + " " + this.cpf + " " + this.rg + " "
