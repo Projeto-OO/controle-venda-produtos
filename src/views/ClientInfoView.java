@@ -2,8 +2,11 @@ package views;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -243,6 +246,20 @@ public class ClientInfoView {
           cartTableModel.addRow(new Object[] { searchProductPopUpView.getProduct().getName(),
               searchProductPopUpView.getQuantity(), searchProductPopUpView.getProduct().getSalePrice(),
               searchProductPopUpView.getProduct().getSalePrice() * searchProductPopUpView.getQuantity() });
+        }
+      }
+    });
+
+    cartTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+      public void valueChanged(ListSelectionEvent event) {
+        if (cartTable.getSelectedRow() > -1) {
+          int dialogButton = JOptionPane.YES_NO_OPTION;
+          int dialogResult = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir esse produto?",
+              "Confirme sua ação", dialogButton);
+
+          if (dialogResult == JOptionPane.YES_OPTION) {
+            cartTableModel.removeRow(cartTable.getSelectedRow());
+          }
         }
       }
     });
