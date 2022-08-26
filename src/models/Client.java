@@ -21,6 +21,7 @@ public class Client extends Person {
     this.address = address;
     this.payment = payment;
     this.pastOrders = new ArrayList<Cart>();
+    this.currentOrder = new Cart(new ArrayList<ProductAmount>(), 0);
   }
 
   public Address getAddress() {

@@ -7,6 +7,8 @@ import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import models.Client;
 import java.awt.Font;
@@ -196,10 +198,19 @@ public class ClientInfoView {
     frame.getContentPane().add(cartScrollPane);
 
     String[] cartTableColumns = { "Produto", "Quantidade", "Preço Unitário", "Preço Total" };
-    DefaultTableModel cartTableModel = new DefaultTableModel(cartTableColumns, 0);
+    DefaultTableModel cartTableModel = new DefaultTableModel(cartTableColumns,
+        client.getCurrentOrder().getProducts().size());
 
     cartTable = new JTable(cartTableModel);
     cartScrollPane.setViewportView(cartTable);
+
+    for (int i = 0; i < client.getCurrentOrder().getProducts().size(); i++) {
+      cartTableModel.setValueAt(client.getCurrentOrder().getProducts().get(i).getProduct().getName(), i, 0);
+      cartTableModel.setValueAt(client.getCurrentOrder().getProducts().get(i).getAmount(), i, 1);
+      cartTableModel.setValueAt(client.getCurrentOrder().getProducts().get(i).getProduct().getSalePrice(), i, 2);
+      cartTableModel.setValueAt(client.getCurrentOrder().getProducts().get(i).getProduct().getSalePrice()
+          * client.getCurrentOrder().getProducts().get(i).getAmount(), i, 3);
+    }
 
     JLabel pastOrdersLabel = new JLabel("Compras Anteriores");
     pastOrdersLabel.setFont(new Font("Dialog", Font.BOLD, 22));
@@ -212,6 +223,29 @@ public class ClientInfoView {
 
     pastOrdersTable = new JTable();
     pastOrdersScrollPane.setViewportView(pastOrdersTable);
+
+    JButton addProductButton = new JButton("Adicionar");
+    addProductButton.setBounds(665, 120, 120, 25);
+    frame.getContentPane().add(addProductButton);
+
+    SearchProductPopUpView searchProductPopUpView = new SearchProductPopUpView(client);
+
+    addProductButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+
+        searchProductPopUpView.getFrame().setVisible(true);
+      }
+    });
+
+    searchProductPopUpView.getFrame().addWindowListener(new WindowAdapter() {
+      public void windowClosing(WindowEvent e) {
+        if (searchProductPopUpView.getProduct() != null) {
+          cartTableModel.addRow(new Object[] { searchProductPopUpView.getProduct().getName(),
+              searchProductPopUpView.getQuantity(), searchProductPopUpView.getProduct().getSalePrice(),
+              searchProductPopUpView.getProduct().getSalePrice() * searchProductPopUpView.getQuantity() });
+        }
+      }
+    });
 
     returnButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
