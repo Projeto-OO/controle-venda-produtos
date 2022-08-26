@@ -20,8 +20,6 @@ public class Cart {
   }
 
   public double getTotalPrice() {
-    double totalPrice = 0;
-
     for (ProductAmount productAmount : products) {
       totalPrice += productAmount.getProduct().getSalePrice() * productAmount.getAmount();
     }
@@ -34,6 +32,14 @@ public class Cart {
   }
 
   public String toString() {
-    return "Total de Produtos Comprados: " + this.getProducts().size() + ", Valor Total: " + this.getTotalPrice();
+    int totalProductsBought = 0;
+    double totalPrice = 0;
+
+    for (int i = 0; i < products.size(); i++) {
+      totalProductsBought += products.get(i).getAmount();
+      totalPrice += products.get(i).getProduct().getSalePrice() * products.get(i).getAmount();
+    }
+
+    return "Total de Produtos Comprados: " + totalProductsBought + " - Valor Total: " + totalPrice;
   }
 }

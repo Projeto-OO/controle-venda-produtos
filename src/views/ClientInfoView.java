@@ -5,6 +5,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import controllers.ClientController;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -13,7 +16,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import models.Address;
 import models.Client;
+import models.Payment;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -46,8 +52,11 @@ public class ClientInfoView {
   private JTextField expiresAtTextField;
   private JTable cartTable;
   private JTable pastOrdersTable;
+  private ClientController clientController;
 
   public ClientInfoView(Client client) {
+    clientController = new ClientController();
+
     frame = new JFrame();
     frame.setBounds(100, 100, 800, 550);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,17 +103,17 @@ public class ClientInfoView {
     cellphoneLabel.setBounds(30, 180, 100, 15);
     frame.getContentPane().add(cellphoneLabel);
 
-    JLabel userCpfInput = new JLabel(cpf);
-    userCpfInput.setBounds(200, 120, 100, 15);
-    frame.getContentPane().add(userCpfInput);
+    JLabel userCpfTextField = new JLabel(cpf);
+    userCpfTextField.setBounds(200, 120, 100, 15);
+    frame.getContentPane().add(userCpfTextField);
 
-    JLabel userRgInput = new JLabel(rg);
-    userRgInput.setBounds(200, 150, 100, 15);
-    frame.getContentPane().add(userRgInput);
+    JLabel userRgTextField = new JLabel(rg);
+    userRgTextField.setBounds(200, 150, 100, 15);
+    frame.getContentPane().add(userRgTextField);
 
-    JTextField userCellphoneInput = new JTextField(cellphone);
-    userCellphoneInput.setBounds(200, 180, 100, 15);
-    frame.getContentPane().add(userCellphoneInput);
+    JTextField userCellphoneTextField = new JTextField(cellphone);
+    userCellphoneTextField.setBounds(200, 180, 100, 15);
+    frame.getContentPane().add(userCellphoneTextField);
 
     JButton returnButton = new JButton("Salvar e Voltar");
     returnButton.setBounds(300, 480, 200, 25);
@@ -247,7 +256,6 @@ public class ClientInfoView {
 
     addProductButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-
         searchProductPopUpView.getFrame().setVisible(true);
       }
     });
@@ -323,6 +331,17 @@ public class ClientInfoView {
 
     returnButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+        Address updatedAddress = new Address(stateTextField.getText(), cityTextField.getText(), cepTextField.getText(),
+            Integer.valueOf(numberTextField.getText()), complementTextField.getText());
+        Payment updatedPayment = new Payment(typeTextField.getText(), numberTextField.getText(),
+            Integer.valueOf(cvvTextField.getText()),
+            expiresAtTextField.getText());
+        Client updatedCliente = new Client(client.getName(), client.getEmail(), client.getCpf(), client.getRg(),
+            userCpfTextField.getText(),
+            updatedAddress, updatedPayment);
+
+        clientController.updateClient(updatedCliente);
+
         ClientView clientView = new ClientView();
 
         clientView.getFrame().setVisible(true);

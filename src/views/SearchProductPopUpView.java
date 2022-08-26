@@ -57,6 +57,8 @@ public class SearchProductPopUpView {
           client.getCurrentOrder().getProducts().add(new ProductAmount(
               productController.readOneProduct(productTextField.getText()),
               Integer.parseInt(amountTextField.getText())));
+
+              frame.dispose();
         } else {
           JOptionPane.showMessageDialog(null, "Produto não encontrado!");
         }
