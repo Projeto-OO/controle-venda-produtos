@@ -252,6 +252,10 @@ public class ClientInfoView {
     finnishButton.setBounds(665, 160, 120, 25);
     frame.getContentPane().add(finnishButton);
 
+    JButton deleteClientButton = new JButton("Excluir Cliente");
+    deleteClientButton.setBounds(625, 480, 150, 25);
+    frame.getContentPane().add(deleteClientButton);
+
     SearchProductPopUpView searchProductPopUpView = new SearchProductPopUpView(client);
 
     addProductButton.addActionListener(new ActionListener() {
@@ -347,6 +351,21 @@ public class ClientInfoView {
         clientView.getFrame().setVisible(true);
 
         frame.dispose();
+      }
+    });
+
+    deleteClientButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir esse cliente?",
+            "Confirme sua ação", dialogButton);
+
+        if (dialogResult == JOptionPane.YES_OPTION) {
+          clientController.deleteClient(client);
+          ClientView clientView = new ClientView();
+          clientView.getFrame().setVisible(true);
+          frame.dispose();
+        }
       }
     });
   }
