@@ -1,9 +1,24 @@
 package models;
 
+/**
+ * @author Gustavo Kenzo
+ * @author Bruno Medeiros
+ * 
+ *         Classe que representa a quantidade de um produto a ser adicionado no
+ *         carrinho.
+ * 
+ */
 public class ProductAmount {
   private Product product;
   private int amount;
 
+  /**
+   * Construtor da classe ProductAmount
+   * 
+   * @param product Produto a ser adicionado no carrinho
+   * @param amount  Quantidade a ser adicionada no carrinho
+   * 
+   */
   public ProductAmount(Product product, int amount) {
     this.product = product;
     this.amount = amount;

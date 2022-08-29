@@ -1,5 +1,12 @@
 package models;
 
+/**
+ * @author Gustavo Kenzo
+ * @author Bruno Medeiros
+ * 
+ *         Classe que representa um produto.
+ * 
+ */
 public class Product {
   private String name;
   private double salePrice;
@@ -7,6 +14,16 @@ public class Product {
   private int stock;
   private String category;
 
+  /**
+   * Construtor da classe Product
+   * 
+   * @param name         Nome do produto
+   * @param salePrice    Preço de venda do produto
+   * @param factoryPrice Preço de fábrica do produto
+   * @param stock        Quantidade em estoque do produto
+   * @param category     Categoria do produto
+   * 
+   */
   public Product(String name, double salePrice, double factoryPrice, int stock, String category) {
     this.name = name;
     this.salePrice = salePrice;

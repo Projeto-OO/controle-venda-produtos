@@ -3,7 +3,6 @@ package models;
 /**
  * @author Gustavo Kenzo
  * @author Bruno Medeiros
- * @version 1.0
  * 
  *          Classe que representa o endereço de um usuário
  * 

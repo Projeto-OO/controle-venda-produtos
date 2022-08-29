@@ -1,11 +1,27 @@
 package models;
 
+/**
+ * @author Gustavo Kenzo
+ * @author Bruno Medeiros
+ * 
+ *         Classe que representa o meio de pagamento de um cliente.
+ * 
+ */
 public class Payment {
   private String type;
   private String number;
   private int cvv;
   private String expiresAt;
 
+  /**
+   * Construtor da classe Payment
+   * 
+   * @param type      Tipo de pagamento
+   * @param number    Número do cartão de crédito
+   * @param cvv       CVV do cartão de crédito
+   * @param expiresAt Data de expiração do cartão de crédito
+   * 
+   */
   public Payment(String type, String number, int cvv, String expiresAt) {
     this.type = type;
     this.number = number;

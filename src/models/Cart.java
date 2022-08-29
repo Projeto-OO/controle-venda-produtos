@@ -2,10 +2,24 @@ package models;
 
 import java.util.ArrayList;
 
+/**
+ * @author Gustavo Kenzo
+ * @author Bruno Medeiros
+ * 
+ *         Classe que guarda um conjunto de produtos e o preço total da compra.
+ * 
+ */
 public class Cart {
   private ArrayList<ProductAmount> products;
   private double totalPrice;
 
+  /**
+   * Construtor da classe Cart
+   * 
+   * @param products   Conjunto de produtos do carrinho
+   * @param totalPrice Preço total da compra
+   * 
+   */
   public Cart(ArrayList<ProductAmount> products, double totalPrice) {
     this.products = products;
     this.totalPrice = totalPrice;

@@ -2,6 +2,13 @@ package models;
 
 import java.util.ArrayList;
 
+/**
+ * @author Gustavo Kenzo
+ * @author Bruno Medeiros
+ * 
+ *         Classe que herda de Person e representa um cliente do sistema.
+ * 
+ */
 public class Client extends Person {
   private Address address;
   private String cpf;
@@ -11,6 +18,18 @@ public class Client extends Person {
   private ArrayList<Cart> pastOrders;
   private Cart currentOrder;
 
+  /**
+   * Construtor da classe Client
+   * 
+   * @param name      Nome do cliente
+   * @param email     Email do cliente
+   * @param address   Endereço do cliente
+   * @param cpf       CPF do cliente
+   * @param rg        RG do cliente
+   * @param cellphone Celular do cliente
+   * @param payment   Forma de pagamento do cliente
+   * 
+   */
   public Client(String name, String email, String cpf, String rg, String cellphone,
       Address address,
       Payment payment) {
@@ -80,12 +99,21 @@ public class Client extends Person {
     this.currentOrder = currentOrder;
   }
 
+  /**
+   * Adiciona carrinho atual na lista de carrinhos anteriores e limpa o carrinho
+   * atual.
+   * 
+   */
   public void checkout() {
     this.pastOrders.add(currentOrder);
 
     this.currentOrder = new Cart(new ArrayList<ProductAmount>(), 0);
   }
 
+  /**
+   * Sobrescreve o método toString para exibir os dados do cliente.
+   * 
+   */
   @Override
   public String toString() {
     return "Client " + super.toString() + " " + this.address + " " + this.cpf + " " + this.rg + " "
