@@ -1,11 +1,10 @@
 package models;
 
 /**
+ * Classe que representa o meio de pagamento de um cliente.
+ * 
  * @author Gustavo Kenzo
  * @author Bruno Medeiros
- * 
- *         Classe que representa o meio de pagamento de um cliente.
- * 
  */
 public class Payment {
   private String type;

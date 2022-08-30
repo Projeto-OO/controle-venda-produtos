@@ -1,11 +1,11 @@
 package models;
 
 /**
+ * Classe que herda de Person e representa um administrador do sistema.
+ * 
  * @author Gustavo Kenzo
  * @author Bruno Medeiros
- * 
- *         Classe que herda de Person e representa um administrador do sistema.
- * 
+ * @see Person
  */
 public class Admin extends Person {
 

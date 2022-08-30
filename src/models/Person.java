@@ -1,11 +1,10 @@
 package models;
 
 /**
+ * Classe abstrata que representa uma pessoa.
+ * 
  * @author Gustavo Kenzo
  * @author Bruno Medeiros
- * 
- *         Classe que abstrata que representa uma pessoa.
- * 
  */
 public abstract class Person {
   private String name;

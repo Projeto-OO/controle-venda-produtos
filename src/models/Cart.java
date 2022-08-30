@@ -3,10 +3,10 @@ package models;
 import java.util.ArrayList;
 
 /**
+ * Classe que guarda um conjunto de produtos e o preço total da compra.
+ * 
  * @author Gustavo Kenzo
  * @author Bruno Medeiros
- * 
- *         Classe que guarda um conjunto de produtos e o preço total da compra.
  * 
  */
 public class Cart {

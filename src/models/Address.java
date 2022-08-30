@@ -1,10 +1,11 @@
 package models;
 
 /**
+ * Classe que representa o endereço de um usuário
+ *          	
  * @author Gustavo Kenzo
  * @author Bruno Medeiros
  * 
- *          Classe que representa o endereço de um usuário
  * 
  */
 public class Address {

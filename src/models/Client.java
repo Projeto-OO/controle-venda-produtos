@@ -3,11 +3,12 @@ package models;
 import java.util.ArrayList;
 
 /**
+ * Classe que herda de Person e representa um cliente do sistema.
+ * 
  * @author Gustavo Kenzo
  * @author Bruno Medeiros
  * 
- *         Classe que herda de Person e representa um cliente do sistema.
- * 
+ * @see Person
  */
 public class Client extends Person {
   private Address address;

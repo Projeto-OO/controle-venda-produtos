@@ -1,11 +1,10 @@
 package models;
 
 /**
+ * Classe que representa um produto.
+ * 
  * @author Gustavo Kenzo
  * @author Bruno Medeiros
- * 
- *         Classe que representa um produto.
- * 
  */
 public class Product {
   private String name;

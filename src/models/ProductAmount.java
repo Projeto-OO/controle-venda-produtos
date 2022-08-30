@@ -1,11 +1,11 @@
 package models;
 
 /**
+ * Classe que representa a quantidade de um produto a ser adicionado no
+ * carrinho.
+ * 
  * @author Gustavo Kenzo
  * @author Bruno Medeiros
- * 
- *         Classe que representa a quantidade de um produto a ser adicionado no
- *         carrinho.
  * 
  */
 public class ProductAmount {
