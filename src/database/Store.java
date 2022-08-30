@@ -8,6 +8,12 @@ import models.Client;
 import models.Payment;
 import models.Product;
 
+/**
+ * Classe que representa um banco de dados em memória.
+ * 
+ * @author Gustavo Kenzo
+ * @author Bruno Medeiros
+ */
 public class Store {
   private String name;
   private ArrayList<Admin> admins;
@@ -16,7 +22,10 @@ public class Store {
 
   private static Store instance = null;
 
-  // Singleton to avoid multiple instances of the database
+  /**
+   * Instancia um novo banco de dados se um banco de dados não existir. Caso
+   * contrário, retorna o banco de dados existente.
+   */
   public static Store getInstance() {
     if (instance == null) {
       instance = new Store();
@@ -59,6 +68,9 @@ public class Store {
     this.products = products;
   }
 
+  /**
+   * Preenche a base de dados com dados gerados em loop.
+   */
   public static void fillDatabase() {
     instance.admins.add(new Admin("admin", "admin@admin.com", "admin"));
 
@@ -75,6 +87,10 @@ public class Store {
     }
   }
 
+  /**
+   * Limpa a base de dados.
+   * 
+   */
   public void clearDatabase() {
     this.admins.clear();
     this.clients.clear();
