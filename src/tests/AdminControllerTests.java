@@ -20,6 +20,7 @@ public class AdminControllerTests {
     this.database.clearDatabase();
   }
 
+  // Deve ser possível criar um administrador
   @Test
   void createAdminTest() {
     adminController.createAdmin("Admin de Teste", "test@admin.com", "admin123");
@@ -27,6 +28,7 @@ public class AdminControllerTests {
     assertEquals("Admin de Teste", database.getAdmins().get(0).getName());
   }
 
+  // Deve ser possível ler todos os administradores
   @Test
   void readAllAdminsTest() {
     adminController.createAdmin("Admin de Teste 1", "test1@admin.com", "admin123");
@@ -35,6 +37,7 @@ public class AdminControllerTests {
     assertEquals(2, adminController.readAllAdmins().size());
   }
 
+  // Deve ser possível ler um administrador
   @Test
   void readOneAdminTest() {
     adminController.createAdmin("Admin de Teste", "test@admin.com", "admin123");
@@ -42,6 +45,7 @@ public class AdminControllerTests {
     assertEquals("Admin de Teste", adminController.readOneAdmin("test@admin.com").getName());
   }
 
+  // Deve ser possível atualizar um administrador
   @Test
   void updateAdminTest() {
     adminController.createAdmin("Admin de Teste", "test@admin.com", "admin123");
@@ -50,6 +54,7 @@ public class AdminControllerTests {
     assertEquals("Admin de Teste Editado", adminController.readOneAdmin("test@admin.com").getName());
   }
 
+  // Deve ser possível deletar um administrador
   @Test
   void deleteAdminTest() {
     adminController.createAdmin("Admin de Teste", "test1@admin.com", "admin123");

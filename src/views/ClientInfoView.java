@@ -15,8 +15,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 import models.Address;
+import models.Cart;
 import models.Client;
 import models.Payment;
 
@@ -335,6 +337,9 @@ public class ClientInfoView {
 
     returnButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+        Cart orders = client.getCurrentOrder();
+        ArrayList<Cart> pastOrders = client.getPastOrders();
+
         Address updatedAddress = new Address(stateTextField.getText(), cityTextField.getText(), cepTextField.getText(),
             Integer.valueOf(numberTextField.getText()), complementTextField.getText());
         Payment updatedPayment = new Payment(typeTextField.getText(), numberTextField.getText(),
@@ -343,6 +348,9 @@ public class ClientInfoView {
         Client updatedCliente = new Client(client.getName(), client.getEmail(), client.getCpf(), client.getRg(),
             userCpfTextField.getText(),
             updatedAddress, updatedPayment);
+
+        updatedCliente.setPastOrders(pastOrders);
+        updatedCliente.setCurrentOrder(orders);
 
         clientController.updateClient(updatedCliente);
 

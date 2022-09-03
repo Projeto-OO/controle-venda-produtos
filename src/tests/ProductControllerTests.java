@@ -20,6 +20,7 @@ public class ProductControllerTests {
     this.database.clearDatabase();
   }
 
+  // Deve ser possível criar um produto
   @Test
   void createProductTest() {
     productController.createProduct("Pão", 2, 1, 100, "Alimento");
@@ -27,6 +28,7 @@ public class ProductControllerTests {
     assertEquals("Pão", database.getProducts().get(0).getName());
   }
 
+  // Deve ser possível ler um produto
   @Test
   void readOneProductTest() {
     productController.createProduct("Pão", 2, 1, 100, "Alimento");
@@ -34,6 +36,7 @@ public class ProductControllerTests {
     assertEquals("Pão", productController.readOneProduct("Pão").getName());
   }
 
+  // Deve ser possível ler todos os produtos
   @Test
   void readAllProductsTest() {
     productController.createProduct("Pão", 2, 1, 100, "Alimento");
@@ -42,6 +45,7 @@ public class ProductControllerTests {
     assertEquals(2, productController.readAllProducts().size());
   }
 
+  // Deve ser possível atualizar um produto
   @Test
   void updateProductTest() {
     productController.createProduct("Pão", 2, 1, 100, "Alimento");
@@ -50,6 +54,7 @@ public class ProductControllerTests {
     assertEquals("Alimento Editado", productController.readOneProduct("Pão").getCategory());
   }
 
+  // Deve ser possível deletar um produto
   @Test
   void deleteProductTest() {
     productController.createProduct("Pão", 2, 1, 100, "Alimento");

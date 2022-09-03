@@ -22,6 +22,7 @@ class ClientControllerTests {
 		this.database.clearDatabase();
 	}
 
+	// Deve ser possível criar um cliente
 	@Test
 	void createClientTest() {
 		Payment testClientPayment = new Payment("débito", "1234567", 123, "12/2025");
@@ -34,6 +35,7 @@ class ClientControllerTests {
 		assertEquals("Cliente de Teste", database.getClients().get(0).getName());
 	}
 
+	// Deve ser possível ler todos os clientes
 	@Test
 	void readAllClientsTest() {
 		Payment testClientPayment = new Payment("débito", "1234567", 123, "12/2025");
@@ -46,6 +48,7 @@ class ClientControllerTests {
 		assertEquals(1, database.getClients().size());
 	}
 
+	// Deve ser possível ler um cliente
 	@Test
 	void readOneClientTest() {
 		Payment testClientPayment = new Payment("débito", "1234567", 123, "12/2025");
@@ -58,6 +61,7 @@ class ClientControllerTests {
 		assertEquals("Cliente de Teste", clientController.readOneClient("john.doe@example.com").getName());
 	}
 
+	// Deve ser possível atualizar um cliente
 	@Test
 	void updateClientTest() {
 		Payment testClientPayment = new Payment("débito", "1234567", 123, "12/2025");
@@ -74,6 +78,7 @@ class ClientControllerTests {
 		assertEquals("Cliente de Teste Editado", clientController.readOneClient("john.doe@example.com").getName());
 	}
 
+	// Deve ser possível deletar um cliente
 	@Test
 	void deleteClientTest() {
 		Payment testClientPayment = new Payment("débito", "1234567", 123, "12/2025");
