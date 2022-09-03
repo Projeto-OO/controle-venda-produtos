@@ -53,10 +53,20 @@ public class SearchProductPopUpView {
 
     addButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        if (productController.readOneProduct(productTextField.getText()) != null) {
-          client.getCurrentOrder().getProducts().add(new ProductAmount(
-              productController.readOneProduct(productTextField.getText()),
-              Integer.parseInt(amountTextField.getText())));
+        Product searchedProduct = productController.readOneProduct(productTextField.getText());
+        if (searchedProduct != null) {
+
+          int amount = Integer.parseInt(amountTextField.getText());
+          ProductAmount productAmount = new ProductAmount(searchedProduct, amount);
+
+          if (searchedProduct.getStock() >= amount) {
+            client.getCurrentOrder().getProducts().add(productAmount);
+            searchedProduct.setStock(searchedProduct.getStock() - amount);
+
+            JOptionPane.showMessageDialog(null, "Produto adicionado ao carrinho");
+          } else {
+            JOptionPane.showMessageDialog(null, "Quantidade indisponível em estoque");
+          }
         } else {
           JOptionPane.showMessageDialog(null, "Produto não encontrado!");
         }

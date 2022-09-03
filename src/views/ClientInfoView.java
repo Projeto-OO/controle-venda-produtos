@@ -21,6 +21,7 @@ import models.Address;
 import models.Cart;
 import models.Client;
 import models.Payment;
+import models.ProductAmount;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -295,6 +296,12 @@ public class ClientInfoView {
               "Confirme sua ação", dialogButton);
 
           if (dialogResult == JOptionPane.YES_OPTION) {
+            ProductAmount selectedProduct = client.getCurrentOrder().getProducts().get(cartTable.getSelectedRow());
+            
+            selectedProduct.getProduct()
+            .setStock(selectedProduct.getProduct().getStock() + selectedProduct.getAmount());
+            
+            client.getCurrentOrder().getProducts().remove(cartTable.getSelectedRow());
             cartTableModel.removeRow(cartTable.getSelectedRow());
           }
         }
