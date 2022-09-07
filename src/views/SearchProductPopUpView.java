@@ -15,6 +15,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Classe responsável por exibir a tela de busca de produtos.
+ * 
+ * @author Gustavo Kenzo
+ * @author Bruno Medeiros
+ */
 public class SearchProductPopUpView {
   private JFrame frame;
   private JTextField productTextField;
@@ -86,6 +92,9 @@ public class SearchProductPopUpView {
     return Integer.parseInt(amountTextField.getText());
   }
 
+  /**
+   * Limpa os campos de texto da tela.
+   */
   public void clearInputs() {
     productTextField.setText("");
     amountTextField.setText("");

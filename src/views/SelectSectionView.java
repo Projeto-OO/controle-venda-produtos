@@ -6,9 +6,21 @@ import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Classe responsável por exibir a tela de seleção de seção.
+ * Permite que um administrador selecione entre as seções de produtos e de
+ * clientes.
+ * 
+ * @author Gustavo Kenzo
+ * @author Bruno Medeiros
+ */
 public class SelectSectionView {
 	private JFrame frame;
 
+	/**
+	 * Construtor responsável por adicionar os elementos na tela, bem como
+	 * definir as ações de cada botão.
+	 */
 	public SelectSectionView() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 550);

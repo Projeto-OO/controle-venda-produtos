@@ -17,6 +17,13 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+/**
+ * Classe responsável por exibir a tela de criação, listagem, edição e remoção
+ * de produtos.
+ * 
+ * @author Gustavo Kenzo
+ * @author Bruno Medeiros
+ */
 public class ProductView {
   private JFrame frame;
   private JTable table;
@@ -31,6 +38,9 @@ public class ProductView {
   private JButton deleteProductButton;
   private ProductController productController;
 
+  /**
+   * Construtor da classe.
+   */
   public ProductView() {
     productController = new ProductController();
 
@@ -276,6 +286,9 @@ public class ProductView {
     return frame;
   }
 
+  /**
+   * Limpa todos os campos de texto.
+   */
   public void clearInputs() {
     nameTextField.setText("");
     salePriceTextField.setText("");
@@ -284,6 +297,9 @@ public class ProductView {
     categoryTextField.setText("");
   }
 
+  /**
+   * Adiciona um evento de seleção de linha na tabela.
+   */
   public void addTableRowSelectionEventListener() {
     table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
       public void valueChanged(ListSelectionEvent event) {

@@ -28,6 +28,13 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
+/**
+ * Classe que cria a tela com as informações de um cliente em específico
+ * 
+ * @author Gustavo Kenzo
+ * @author Bruno Medeiros
+ * 
+ */
 public class ClientInfoView {
   private JFrame frame;
   private String name;
@@ -57,6 +64,11 @@ public class ClientInfoView {
   private JTable pastOrdersTable;
   private ClientController clientController;
 
+  /**
+   * Construtor da classe ClientInfoView que cria todos os componentes da tela
+   * 
+   * @param client Cliente selecionado
+   */
   public ClientInfoView(Client client) {
     clientController = new ClientController();
 
@@ -284,6 +296,26 @@ public class ClientInfoView {
               * client.getCurrentOrder().getProducts().get(i).getAmount(), i, 3);
         }
 
+        cartTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+          public void valueChanged(ListSelectionEvent event) {
+            if (cartTable.getSelectedRow() > -1) {
+              int dialogButton = JOptionPane.YES_NO_OPTION;
+              int dialogResult = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir esse produto?",
+                  "Confirme sua ação", dialogButton);
+
+              if (dialogResult == JOptionPane.YES_OPTION) {
+                ProductAmount selectedProduct = client.getCurrentOrder().getProducts().get(cartTable.getSelectedRow());
+
+                selectedProduct.getProduct()
+                    .setStock(selectedProduct.getProduct().getStock() + selectedProduct.getAmount());
+
+                client.getCurrentOrder().getProducts().remove(cartTable.getSelectedRow());
+                cartTableModel.removeRow(cartTable.getSelectedRow());
+              }
+            }
+          }
+        });
+
         searchProductPopUpView.clearInputs();
       }
     });
@@ -297,10 +329,10 @@ public class ClientInfoView {
 
           if (dialogResult == JOptionPane.YES_OPTION) {
             ProductAmount selectedProduct = client.getCurrentOrder().getProducts().get(cartTable.getSelectedRow());
-            
+
             selectedProduct.getProduct()
-            .setStock(selectedProduct.getProduct().getStock() + selectedProduct.getAmount());
-            
+                .setStock(selectedProduct.getProduct().getStock() + selectedProduct.getAmount());
+
             client.getCurrentOrder().getProducts().remove(cartTable.getSelectedRow());
             cartTableModel.removeRow(cartTable.getSelectedRow());
           }

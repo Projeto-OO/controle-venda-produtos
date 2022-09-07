@@ -19,6 +19,13 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+/**
+ * 
+ * Classe responsável por exibir a tela de cadastro e listagem de clientes
+ * 
+ * @author Gustavo Kenzo
+ * @author Bruno Medeiros
+ */
 public class ClientView {
 	private JFrame frame;
 	private JLabel nameLabel;
@@ -55,6 +62,12 @@ public class ClientView {
 	private JScrollPane scrollPane;
 	private JButton returnButton;
 
+	/**
+	 * 
+	 * Construtor da classe ClientView que inicializa os componentes da tela
+	 * 
+	 * @param clientController
+	 */
 	public ClientView() {
 		clientController = new ClientController();
 

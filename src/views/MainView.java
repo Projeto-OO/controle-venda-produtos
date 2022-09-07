@@ -14,11 +14,22 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 
+/**
+ * Classe principal da aplicação. Responsável por exibir a tela de login e
+ * redirecionar para a tela de administração.
+ * 
+ * @author Gustavo Kenzo
+ * @author Bruno Medeiros
+ */
 public class MainView {
 	private JFrame frame;
 	private JTextField emailTextField;
 	private JPasswordField passwordField;
 
+	/**
+	 * Cria a janela, instancia a base de dados e preenche a base de dados com dados
+	 * pré-cadastrados.
+	 */
 	public static void main(String[] args) {
 		MainView window = new MainView();
 		window.frame.setVisible(true);
@@ -27,6 +38,9 @@ public class MainView {
 		Store.fillDatabase();
 	}
 
+	/**
+	 * Cria a janela principal da aplicação.
+	 */
 	public MainView() {
 		AdminController adminController = new AdminController();
 
