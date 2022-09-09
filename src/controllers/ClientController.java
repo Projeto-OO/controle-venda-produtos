@@ -2,10 +2,10 @@ package controllers;
 
 import java.util.ArrayList;
 
-import database.Store;
 import models.Address;
 import models.Client;
 import models.Payment;
+import models.Store;
 
 /**
  * Classe que controla as regras de negócio do cliente.

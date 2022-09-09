@@ -6,8 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import controllers.ProductController;
-import database.Store;
 import models.Product;
+import models.Store;
 
 public class ProductControllerTests {
   Store database;

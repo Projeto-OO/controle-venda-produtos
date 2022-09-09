@@ -6,8 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import controllers.ClientController;
-import database.Store;
 import models.Payment;
+import models.Store;
 import models.Address;
 import models.Client;
 

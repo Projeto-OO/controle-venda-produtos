@@ -2,8 +2,8 @@ package controllers;
 
 import java.util.ArrayList;
 
-import database.Store;
 import models.Admin;
+import models.Store;
 
 /**
  * Classe que controla as regras de negócio do administrador.

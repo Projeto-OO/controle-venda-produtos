@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import controllers.AdminController;
-import database.Store;
+import models.Store;
 
 import java.awt.Font;
 import javax.swing.JTextField;

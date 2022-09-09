@@ -1,12 +1,6 @@
-package database;
+package models;
 
 import java.util.ArrayList;
-
-import models.Address;
-import models.Admin;
-import models.Client;
-import models.Payment;
-import models.Product;
 
 /**
  * Classe que representa um banco de dados em memória.
