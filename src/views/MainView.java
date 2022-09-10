@@ -23,8 +23,12 @@ import javax.swing.JPasswordField;
  */
 public class MainView {
 	private JFrame frame;
+	private JLabel storeNameLabel;
+	private JLabel emailLabel;
+	private JLabel passwordLabel;
 	private JTextField emailTextField;
 	private JPasswordField passwordField;
+	private JButton createAdminButton;
 
 	/**
 	 * Cria a janela, instancia a base de dados e preenche a base de dados com dados
@@ -50,35 +54,34 @@ public class MainView {
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
 
-		JLabel storeNameLabel = new JLabel("Lojão do Brunão");
-		storeNameLabel.setFont(new Font("Meera", Font.BOLD, 25));
-		storeNameLabel.setBounds(315, 100, 175, 60);
-		frame.getContentPane().add(storeNameLabel);
-
-		JLabel emailLabel = new JLabel("E-mail");
-		emailLabel.setBounds(315, 190, 70, 15);
-		frame.getContentPane().add(emailLabel);
-
+		// Create labels and button
+		storeNameLabel = new JLabel("Lojão do Brunão");
+		emailLabel = new JLabel("E-mail");
+		passwordLabel = new JLabel("Senha");
 		emailTextField = new JTextField();
-		emailTextField.setBounds(315, 210, 170, 20);
-		frame.getContentPane().add(emailTextField);
-		emailTextField.setColumns(10);
-
-		JLabel passwordLabel = new JLabel("Senha");
-		passwordLabel.setBounds(315, 250, 70, 15);
-		frame.getContentPane().add(passwordLabel);
-
 		passwordField = new JPasswordField();
-		passwordField.setBounds(315, 270, 170, 20);
-		frame.getContentPane().add(passwordField);
+		createAdminButton = new JButton("Entrar como Administrador");
 
-		JButton createAdminButton = new JButton("Entrar como Administrador");
+		storeNameLabel.setFont(new Font("Meera", Font.BOLD, 25));
+
+		// Set labels and button bounds
+		storeNameLabel.setBounds(315, 100, 175, 60);
+		emailLabel.setBounds(315, 190, 70, 15);
+		passwordLabel.setBounds(315, 250, 70, 15);
+		emailTextField.setBounds(315, 210, 170, 20);
+		passwordField.setBounds(315, 270, 170, 20);
 		createAdminButton.setBounds(285, 340, 225, 25);
+
+		// Add labels and button to frame
+		frame.getContentPane().add(storeNameLabel);
+		frame.getContentPane().add(emailLabel);
+		frame.getContentPane().add(passwordLabel);
+		frame.getContentPane().add(emailTextField);
+		frame.getContentPane().add(passwordField);
 
 		createAdminButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Remove "!" after done testing.
-				if (!adminController.login(emailTextField.getText(), new String(passwordField.getPassword()))) {
+				if (adminController.login(emailTextField.getText(), new String(passwordField.getPassword()))) {
 					SelectSectionView selectSectionView = new SelectSectionView();
 					selectSectionView.getFrame().setVisible(true);
 					frame.dispose();

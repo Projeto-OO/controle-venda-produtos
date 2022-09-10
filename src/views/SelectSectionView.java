@@ -16,6 +16,8 @@ import java.awt.event.ActionListener;
  */
 public class SelectSectionView {
 	private JFrame frame;
+	private JButton productsButton;
+	private JButton clientsButton;
 
 	/**
 	 * Construtor responsável por adicionar os elementos na tela, bem como
@@ -26,15 +28,16 @@ public class SelectSectionView {
 		frame.setBounds(100, 100, 800, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-
-		JButton productsButton = new JButton("Produtos");
-		productsButton.setBounds(300, 200, 200, 25);
-		frame.getContentPane().add(productsButton);
-
-		JButton clientsButton = new JButton("Clientes");
-		clientsButton.setBounds(300, 300, 200, 25);
-		frame.getContentPane().add(clientsButton);
 		frame.setLocationRelativeTo(null);
+
+		productsButton = new JButton("Produtos");
+		clientsButton = new JButton("Clientes");
+
+		productsButton.setBounds(300, 200, 200, 25);
+		clientsButton.setBounds(300, 300, 200, 25);
+
+		frame.getContentPane().add(productsButton);
+		frame.getContentPane().add(clientsButton);
 
 		productsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

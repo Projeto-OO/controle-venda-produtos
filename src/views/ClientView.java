@@ -61,6 +61,7 @@ public class ClientView {
 	private Client selectedClient;
 	private JScrollPane scrollPane;
 	private JButton returnButton;
+	private JButton createClientButton;
 
 	/**
 	 * 
@@ -75,149 +76,114 @@ public class ClientView {
 		frame.setBounds(100, 100, 800, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-
-		nameTextField = new JTextField();
-		nameTextField.setBounds(50, 50, 150, 25);
-		frame.getContentPane().add(nameTextField);
-		nameTextField.setColumns(10);
-
-		emailTextField = new JTextField();
-		emailTextField.setColumns(10);
-		emailTextField.setBounds(50, 100, 150, 25);
-		frame.getContentPane().add(emailTextField);
-
-		nameLabel = new JLabel("Nome");
-		nameLabel.setBounds(50, 30, 70, 15);
-		frame.getContentPane().add(nameLabel);
-
-		emailLabel = new JLabel("E-mail");
-		emailLabel.setBounds(50, 80, 70, 15);
-		frame.getContentPane().add(emailLabel);
-
-		rgTextField = new JTextField();
-		rgTextField.setColumns(10);
-		rgTextField.setBounds(50, 150, 150, 25);
-		frame.getContentPane().add(rgTextField);
-
-		rgLabel = new JLabel("RG");
-		rgLabel.setBounds(50, 130, 70, 15);
-		frame.getContentPane().add(rgLabel);
-
-		cpfTextField = new JTextField();
-		cpfTextField.setColumns(10);
-		cpfTextField.setBounds(50, 200, 150, 25);
-		frame.getContentPane().add(cpfTextField);
-
-		cpfLabel = new JLabel("CPF");
-		cpfLabel.setBounds(50, 180, 70, 15);
-		frame.getContentPane().add(cpfLabel);
-
-		cellphoneTextField = new JTextField();
-		cellphoneTextField.setColumns(10);
-		cellphoneTextField.setBounds(50, 250, 150, 25);
-		frame.getContentPane().add(cellphoneTextField);
-
-		cellphoneLabel = new JLabel("Telefone");
-		cellphoneLabel.setBounds(50, 230, 70, 15);
-		frame.getContentPane().add(cellphoneLabel);
 		frame.setLocationRelativeTo(null);
 
+		// Create labels and text fields
+		nameLabel = new JLabel("Nome");
+		nameTextField = new JTextField();
+		emailLabel = new JLabel("E-mail");
+		emailTextField = new JTextField();
+		rgTextField = new JTextField();
+		rgLabel = new JLabel("RG");
+		cpfLabel = new JLabel("CPF");
+		cpfTextField = new JTextField();
+		cellphoneLabel = new JLabel("Telefone");
+		cellphoneTextField = new JTextField();
+
+		// Set bounds
+		nameTextField.setBounds(50, 50, 150, 25);
+		emailTextField.setBounds(50, 100, 150, 25);
+		nameLabel.setBounds(50, 30, 70, 15);
+		emailLabel.setBounds(50, 80, 70, 15);
+		rgTextField.setBounds(50, 150, 150, 25);
+		rgLabel.setBounds(50, 130, 70, 15);
+		cpfTextField.setBounds(50, 200, 150, 25);
+		cpfLabel.setBounds(50, 180, 70, 15);
+		cellphoneTextField.setBounds(50, 250, 150, 25);
+		cellphoneLabel.setBounds(50, 230, 70, 15);
+
+		// Add to frame
+		frame.getContentPane().add(nameLabel);
+		frame.getContentPane().add(nameTextField);
+		frame.getContentPane().add(emailLabel);
+		frame.getContentPane().add(emailTextField);
+		frame.getContentPane().add(rgLabel);
+		frame.getContentPane().add(rgTextField);
+		frame.getContentPane().add(cpfLabel);
+		frame.getContentPane().add(cpfTextField);
+		frame.getContentPane().add(cellphoneLabel);
+		frame.getContentPane().add(cellphoneTextField);
+
 		// Address Section
-
-		stateTextField = new JTextField();
-		stateTextField.setBounds(300, 50, 150, 25);
-		frame.getContentPane().add(stateTextField);
-		stateTextField.setColumns(10);
-
-		cityTextField = new JTextField();
-		cityTextField.setColumns(10);
-		cityTextField.setBounds(300, 100, 150, 25);
-		frame.getContentPane().add(cityTextField);
-
 		stateLabel = new JLabel("Estado");
-		stateLabel.setBounds(300, 30, 70, 15);
-		frame.getContentPane().add(stateLabel);
-
+		stateTextField = new JTextField();
 		cityLabel = new JLabel("Cidade");
-		cityLabel.setBounds(300, 80, 70, 15);
-		frame.getContentPane().add(cityLabel);
-
-		cepTextField = new JTextField();
-		cepTextField.setColumns(10);
-		cepTextField.setBounds(300, 150, 150, 25);
-		frame.getContentPane().add(cepTextField);
-
+		cityTextField = new JTextField();
 		cepLabel = new JLabel("CEP");
-		cepLabel.setBounds(300, 130, 70, 15);
-		frame.getContentPane().add(cepLabel);
-
-		numberTextField = new JTextField();
-		numberTextField.setColumns(10);
-		numberTextField.setBounds(300, 200, 150, 25);
-		frame.getContentPane().add(numberTextField);
-
+		cepTextField = new JTextField();
 		numberLabel = new JLabel("Número");
-		numberLabel.setBounds(300, 180, 70, 15);
-		frame.getContentPane().add(numberLabel);
-
-		complementTextField = new JTextField();
-		complementTextField.setColumns(10);
-		complementTextField.setBounds(300, 250, 150, 25);
-		frame.getContentPane().add(complementTextField);
-
+		numberTextField = new JTextField();
 		complementLabel = new JLabel("Complemento");
+		complementTextField = new JTextField();
+
+		stateLabel.setBounds(300, 30, 70, 15);
+		stateTextField.setBounds(300, 50, 150, 25);
+		cityLabel.setBounds(300, 80, 70, 15);
+		cityTextField.setBounds(300, 100, 150, 25);
+		cepLabel.setBounds(300, 130, 70, 15);
+		cepTextField.setBounds(300, 150, 150, 25);
+		numberLabel.setBounds(300, 180, 70, 15);
+		numberTextField.setBounds(300, 200, 150, 25);
 		complementLabel.setBounds(300, 230, 100, 15);
+		complementTextField.setBounds(300, 250, 150, 25);
+		
+		frame.getContentPane().add(stateTextField);
+		frame.getContentPane().add(cityTextField);
+		frame.getContentPane().add(stateLabel);
+		frame.getContentPane().add(cityLabel);
+		frame.getContentPane().add(cepTextField);
+		frame.getContentPane().add(cepLabel);
+		frame.getContentPane().add(numberTextField);
+		frame.getContentPane().add(numberLabel);
+		frame.getContentPane().add(complementTextField);
 		frame.getContentPane().add(complementLabel);
 		frame.setLocationRelativeTo(null);
 
 		// Payment Section
-
-		typeTextField = new JTextField();
-		typeTextField.setBounds(550, 50, 150, 25);
-		frame.getContentPane().add(typeTextField);
-		typeTextField.setColumns(10);
-
-		paymentNumberTextField = new JTextField();
-		paymentNumberTextField.setColumns(10);
-		paymentNumberTextField.setBounds(550, 100, 150, 25);
-		frame.getContentPane().add(paymentNumberTextField);
-
 		typeLabel = new JLabel("Tipo");
-		typeLabel.setBounds(550, 30, 70, 15);
-		frame.getContentPane().add(typeLabel);
-
+		typeTextField = new JTextField();
 		paymentNumberLabel = new JLabel("Número");
-		paymentNumberLabel.setBounds(550, 80, 70, 15);
-		frame.getContentPane().add(paymentNumberLabel);
-
-		cvvTextField = new JTextField();
-		cvvTextField.setColumns(10);
-		cvvTextField.setBounds(550, 150, 150, 25);
-		frame.getContentPane().add(cvvTextField);
-
+		paymentNumberTextField = new JTextField();
 		cvvLabel = new JLabel("CVV");
-		cvvLabel.setBounds(550, 130, 70, 15);
-		frame.getContentPane().add(cvvLabel);
-
-		expiresAtTextField = new JTextField();
-		expiresAtTextField.setColumns(10);
-		expiresAtTextField.setBounds(550, 200, 150, 25);
-		frame.getContentPane().add(expiresAtTextField);
-
+		cvvTextField = new JTextField();
 		expiresAtLabel = new JLabel("Data de expiração");
-		expiresAtLabel.setBounds(550, 180, 150, 15);
-		frame.getContentPane().add(expiresAtLabel);
-
-		JButton createClientButton = new JButton("Criar Cliente");
-		createClientButton.setBounds(550, 250, 150, 25);
-		frame.getContentPane().add(createClientButton);
-
+		expiresAtTextField = new JTextField();
+		createClientButton = new JButton("Criar Cliente");
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(50, 300, 650, 150);
-		frame.getContentPane().add(scrollPane);
-
 		returnButton = new JButton("Voltar");
+
+		typeLabel.setBounds(550, 30, 70, 15);
+		typeTextField.setBounds(550, 50, 150, 25);
+		paymentNumberLabel.setBounds(550, 80, 70, 15);
+		paymentNumberTextField.setBounds(550, 100, 150, 25);
+		cvvLabel.setBounds(550, 130, 70, 15);
+		cvvTextField.setBounds(550, 150, 150, 25);
+		expiresAtLabel.setBounds(550, 180, 150, 15);
+		expiresAtTextField.setBounds(550, 200, 150, 25);
+		createClientButton.setBounds(550, 250, 150, 25);
+		scrollPane.setBounds(50, 300, 650, 150);
 		returnButton.setBounds(275, 475, 200, 25);
+
+		frame.getContentPane().add(typeLabel);
+		frame.getContentPane().add(typeTextField);
+		frame.getContentPane().add(paymentNumberLabel);
+		frame.getContentPane().add(paymentNumberTextField);
+		frame.getContentPane().add(cvvLabel);
+		frame.getContentPane().add(cvvTextField);
+		frame.getContentPane().add(expiresAtLabel);
+		frame.getContentPane().add(expiresAtTextField);
+		frame.getContentPane().add(createClientButton);
+		frame.getContentPane().add(scrollPane);
 		frame.getContentPane().add(returnButton);
 
 		updateTable();

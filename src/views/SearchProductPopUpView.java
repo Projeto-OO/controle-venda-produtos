@@ -26,6 +26,9 @@ public class SearchProductPopUpView {
   private JTextField productTextField;
   private JTextField amountTextField;
   private ProductController productController;
+  private JLabel productLabel;
+  private JLabel amountLabel;
+  private JButton addButton;
 
   public SearchProductPopUpView(Client client) {
     this.productController = new ProductController();
@@ -33,29 +36,25 @@ public class SearchProductPopUpView {
     frame = new JFrame();
     frame.setBounds(200, 200, 400, 250);
     frame.getContentPane().setLayout(null);
+    frame.setLocationRelativeTo(null);
 
     productTextField = new JTextField();
-    productTextField.setBounds(120, 50, 150, 20);
-    frame.getContentPane().add(productTextField);
-    productTextField.setColumns(10);
-
-    JLabel productLabel = new JLabel("Produto");
-    productLabel.setBounds(120, 30, 70, 15);
-    frame.getContentPane().add(productLabel);
-
+    productLabel = new JLabel("Produto");
     amountTextField = new JTextField();
-    amountTextField.setColumns(10);
+    amountLabel = new JLabel("Quantidade");
+    addButton = new JButton("Adicionar");
+
+    productTextField.setBounds(120, 50, 150, 20);
+    productLabel.setBounds(120, 30, 70, 15);
     amountTextField.setBounds(120, 120, 150, 20);
-    frame.getContentPane().add(amountTextField);
-
-    JLabel amountLabel = new JLabel("Quantidade");
     amountLabel.setBounds(120, 100, 150, 15);
-    frame.getContentPane().add(amountLabel);
-
-    JButton addButton = new JButton("Adicionar");
     addButton.setBounds(120, 170, 150, 25);
+
+    frame.getContentPane().add(productTextField);
+    frame.getContentPane().add(productLabel);
+    frame.getContentPane().add(amountTextField);
+    frame.getContentPane().add(amountLabel);
     frame.getContentPane().add(addButton);
-    frame.setLocationRelativeTo(null);
 
     addButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {

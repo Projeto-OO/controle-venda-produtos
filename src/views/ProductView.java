@@ -34,9 +34,16 @@ public class ProductView {
   private JTextField categoryTextField;
   private Product selectedProduct;
   private JScrollPane scrollPane;
+  private JButton createProductButton;
   private JButton editProductButton;
   private JButton deleteProductButton;
+  private JButton returnButton;
   private ProductController productController;
+  private JLabel nameLabel;
+  private JLabel salePriceLabel;
+  private JLabel factoryPriceLabel;
+  private JLabel stockLabel;
+  private JLabel categoryLabel;
 
   /**
    * Construtor da classe.
@@ -50,21 +57,58 @@ public class ProductView {
     frame.getContentPane().setLayout(null);
     frame.setLocationRelativeTo(null);
 
-    JButton createProductButton = new JButton("Criar Produto");
-    createProductButton.setBounds(10, 300, 200, 25);
-    frame.getContentPane().add(createProductButton);
-
+    // Create buttons
+    createProductButton = new JButton("Criar Produto");
     editProductButton = new JButton("Editar Produto");
-    editProductButton.setBounds(10, 350, 200, 25);
-    frame.getContentPane().add(editProductButton);
-
     deleteProductButton = new JButton("Excluir Produto");
-    deleteProductButton.setBounds(10, 400, 200, 25);
-    frame.getContentPane().add(deleteProductButton);
+    returnButton = new JButton("Voltar para o Menu");
 
-    JButton returnButton = new JButton("Voltar para o Menu");
-    returnButton.setBounds(13, 460, 200, 25);
+    // Set buttons size and position
+    createProductButton.setBounds(10, 300, 200, 25);
+    editProductButton.setBounds(10, 350, 200, 25);
+    deleteProductButton.setBounds(10, 400, 200, 25);
+    returnButton.setBounds(10, 450, 200, 25);
+
+    // Add buttons to frame
+    frame.getContentPane().add(createProductButton);
+    frame.getContentPane().add(editProductButton);
+    frame.getContentPane().add(deleteProductButton);
     frame.getContentPane().add(returnButton);
+
+    // Create text fields and labels
+    nameLabel = new JLabel("Nome");
+    nameTextField = new JTextField();
+    salePriceLabel = new JLabel("Preço de Venda");
+    salePriceTextField = new JTextField();
+    factoryPriceLabel = new JLabel("Preço de Fábrica");
+    factoryPriceTextField = new JTextField();
+    stockLabel = new JLabel("Estoque");
+    stockTextField = new JTextField();
+    categoryLabel = new JLabel("Categoria");
+    categoryTextField = new JTextField();
+
+    // Set text fields and labels bounds
+    nameTextField.setBounds(10, 50, 200, 25);
+    nameLabel.setBounds(10, 30, 70, 15);
+    salePriceLabel.setBounds(10, 80, 200, 15);
+    salePriceTextField.setBounds(10, 100, 200, 25);
+    factoryPriceLabel.setBounds(10, 130, 200, 15);
+    factoryPriceTextField.setBounds(10, 150, 200, 25);
+    stockLabel.setBounds(10, 180, 200, 15);
+    stockTextField.setBounds(10, 200, 200, 25);
+    categoryLabel.setBounds(10, 230, 200, 15);
+    categoryTextField.setBounds(10, 250, 200, 25);
+
+    frame.getContentPane().add(nameLabel);
+    frame.getContentPane().add(nameTextField);
+    frame.getContentPane().add(salePriceLabel);
+    frame.getContentPane().add(salePriceTextField);
+    frame.getContentPane().add(factoryPriceLabel);
+    frame.getContentPane().add(factoryPriceTextField);
+    frame.getContentPane().add(stockLabel);
+    frame.getContentPane().add(stockTextField);
+    frame.getContentPane().add(categoryLabel);
+    frame.getContentPane().add(categoryTextField);
 
     String[] columns = { "Nome", "Preço de Venda", "Estoque", "Lucro por Produto" };
     Object[][] data = new Object[productController.readAllProducts().size()][columns.length];
@@ -234,52 +278,6 @@ public class ProductView {
     });
 
     scrollPane.setViewportView(table);
-
-    nameTextField = new JTextField();
-    nameTextField.setBounds(10, 50, 200, 25);
-    frame.getContentPane().add(nameTextField);
-    nameTextField.setColumns(10);
-
-    salePriceTextField = new JTextField();
-    salePriceTextField.setBounds(10, 100, 200, 25);
-    frame.getContentPane().add(salePriceTextField);
-    salePriceTextField.setColumns(10);
-
-    factoryPriceTextField = new JTextField();
-    factoryPriceTextField.setBounds(10, 150, 200, 25);
-    frame.getContentPane().add(factoryPriceTextField);
-    factoryPriceTextField.setColumns(10);
-
-    stockTextField = new JTextField();
-    stockTextField.setBounds(10, 200, 200, 25);
-    frame.getContentPane().add(stockTextField);
-    stockTextField.setColumns(10);
-
-    categoryTextField = new JTextField();
-    categoryTextField.setBounds(10, 250, 200, 25);
-    frame.getContentPane().add(categoryTextField);
-    categoryTextField.setColumns(10);
-
-    JLabel nameLabel = new JLabel("Nome");
-    nameLabel.setBounds(10, 30, 70, 15);
-    frame.getContentPane().add(nameLabel);
-
-    JLabel salePriceLabel = new JLabel("Preço de Venda");
-    salePriceLabel.setBounds(10, 80, 200, 15);
-    frame.getContentPane().add(salePriceLabel);
-
-    JLabel factoryPriceLabel = new JLabel("Preço de Fábrica");
-    factoryPriceLabel.setBounds(10, 130, 200, 15);
-    frame.getContentPane().add(factoryPriceLabel);
-
-    JLabel stockLabel = new JLabel("Estoque");
-    stockLabel.setBounds(10, 180, 200, 15);
-    frame.getContentPane().add(stockLabel);
-
-    JLabel categoryLabel = new JLabel("Categoria");
-    categoryLabel.setBounds(10, 230, 200, 15);
-    frame.getContentPane().add(categoryLabel);
-
   }
 
   public JFrame getFrame() {
