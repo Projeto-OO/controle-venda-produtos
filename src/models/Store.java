@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Bruno Medeiros
  */
 public class Store {
-  private String name;
+  private static String name;
   private ArrayList<Admin> admins;
   private ArrayList<Client> clients;
   private ArrayList<Product> products;
@@ -26,16 +26,18 @@ public class Store {
       instance.admins = new ArrayList<Admin>();
       instance.clients = new ArrayList<Client>();
       instance.products = new ArrayList<Product>();
+
+      Store.setName("Loja Nova");
     }
     return instance;
   }
 
-  public String getName() {
+  public static String getName() {
     return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public static void setName(String name) {
+    Store.name = name;
   }
 
   public ArrayList<Admin> getAdmins() {
@@ -66,7 +68,7 @@ public class Store {
    * Preenche a base de dados com dados gerados em loop.
    */
   public static void fillDatabase() {
-    instance.admins.add(new Admin("admin", "admin@admin.com", "admin"));
+    // instance.admins.add(new Admin("admin", "admin@admin.com", "admin"));
 
     for (int i = 1; i <= 100; i++) {
       instance.products.add(new Product("Product " + i, i * 2, i, i, "Category " + i));
