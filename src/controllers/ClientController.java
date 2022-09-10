@@ -95,6 +95,13 @@ public class ClientController {
    * @param Client cliente a ser removido
    */
   public void deleteClient(Client client) {
+    // Set everything to null so that the garbage collector can remove it (composition)
+    client.setPayment(null);
+    client.setAddress(null);
+    client.getCurrentOrder().setProducts(null);
+    client.setCurrentOrder(null);
+    client.setPastOrders(null);
+
     this.database.getClients().remove(client);
   }
 }

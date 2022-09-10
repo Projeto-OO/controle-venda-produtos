@@ -45,6 +45,11 @@ public class Cart {
     this.totalPrice = totalPrice;
   }
 
+  /**
+   * Sobrescreve o método toString da classe Object
+   * para exibir um resumo do carrinho.
+   */
+  @Override
   public String toString() {
     int totalProductsBought = 0;
     double totalPrice = 0;
